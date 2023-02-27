@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
+
 import Box from '@mui/material/Box';
+import FindAndExplore from "../Pages/FindAndExplore.Component";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -23,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
         >
             {value === index && (
                 <Box sx={{ p: 3 }}>
-                    <Typography>{children}</Typography>
+                    <div>{children}</div>
                 </Box>
             )}
         </div>
@@ -54,7 +55,7 @@ export default function TabsLayout() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                Item One
+                <FindAndExplore/>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 Item Two
