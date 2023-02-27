@@ -7,13 +7,9 @@ const Layout = (props: any) => {
     const theme = createTheme()
     const darkTheme = createTheme({
             palette: {
-                primary: {
-                    main: '#FFFFFF',
-                },
-                secondary: {
-                    main: '#edf2ff',
-                },
-            },
+                mode:   "dark",
+            }
+
         }
     )
 
@@ -24,7 +20,7 @@ const handleChange = () => {
 return (
     <ThemeProvider theme={toogleTheme ? theme : darkTheme}>
         <AppBar style={{display: "flex", flexDirection: "row"}} position="sticky">
-            <Typography sx={{}} variant={"h2"} align={"left"}>Dploma</Typography>
+            <Typography  variant={"h2"} align={"left"}>Dploma</Typography>
             <Switch
                 checked={toogleTheme}
                 onChange={handleChange}
