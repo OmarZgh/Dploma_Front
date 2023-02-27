@@ -6,6 +6,7 @@ import {checkKeyIntegrity} from "../Services/SecurityHelper";
 
 const GetDplomaCard = (props:any) => {
 
+
     const [accessKeyRef, setAccessKeyRef] = useState<string>("")
 
     function onSubmit(e: React.FormEvent) {
