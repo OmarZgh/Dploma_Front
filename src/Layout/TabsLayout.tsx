@@ -4,6 +4,10 @@ import Tab from '@mui/material/Tab';
 
 import Box from '@mui/material/Box';
 import FindAndExplore from "../Pages/FindAndExplore.Component";
+import FormLayout from "../Components/FormLayout";
+import GetDplomaCard from "../Components/GetDplomaCard";
+import InputForm from "../Components/InputForm";
+import Register from "../Pages/Register";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -12,7 +16,7 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -23,7 +27,7 @@ function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
+                <Box sx={{p: 3}}>
                     <div>{children}</div>
                 </Box>
             )}
@@ -46,8 +50,8 @@ export default function TabsLayout() {
     };
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{width: '100%'}}>
+            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Find and explore" {...a11yProps(0)} />
                     <Tab label="Register " {...a11yProps(1)} />
@@ -58,7 +62,7 @@ export default function TabsLayout() {
                 <FindAndExplore/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <Register/>
             </TabPanel>
             <TabPanel value={value} index={2}>
                 Item Three
