@@ -1,7 +1,7 @@
 import React, {createContext, useEffect, useState} from 'react';
 import './App.css';
 import Layout from "./Layout/Layout";
-import {createTheme, Typography} from "@mui/material";
+import {Button, createTheme, Typography} from "@mui/material";
 
 
 function App() {
@@ -44,7 +44,9 @@ function App() {
                 {
                     isMetamaskInstalled ? (
                         <div>
-                            <button onClick={connectMetamaskWallet}>Connect Your Metamask Wallet</button>
+                            <Typography variant={"h1"}>Welcome to Dploma </Typography>
+                            <Typography>Connect Your Metamask Wallet</Typography>
+                            <Button variant={"outlined"} onClick={connectMetamaskWallet}> Here</Button>
                         </div>
                     ) : (<>
                             <Typography variant={"h1"}>Welcome to Dploma </Typography>
