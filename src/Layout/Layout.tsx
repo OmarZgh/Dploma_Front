@@ -3,13 +3,13 @@ import {AppBar, createTheme, CssBaseline, Typography, Switch, Button, Theme} fro
 import TabsLayout from "./TabsLayout";
 import React, {createContext, useEffect, useState} from "react";
 import Footer from "../Components/Footer";
-
+type SetEthereumAccount = (value: string | null) => void;
 
 interface props {
     theme: Theme;
     darkTheme: Theme;
     ethereumAccount?: string;
-    setEthereumAccount: (string:string) => void;
+    setEthereumAccount: SetEthereumAccount;
 
 }
 
@@ -24,8 +24,9 @@ const Layout = (props: props) => {
         setChangeToogleTheme(!toogleTheme )
     }
 
-    function disconnectFromWallet() {
-        setEthereumAccount("")
+    // Disconnect the User's Ethereum wallet/account
+    function disconnectFromWallet(): void {
+        setEthereumAccount(null);
     }
 
     console.log(ethereumAccount)
@@ -33,11 +34,8 @@ const Layout = (props: props) => {
         <ThemeProvider theme={toogleTheme ? theme : darkTheme}>
             <AppBar style={{display: "flex", flexDirection: "row"}} position="sticky">
                 <Typography variant={"h2"} align={"left"}>Dploma</Typography>
-                <Typography align={"right"}><Switch checked={toogleTheme} onChange={handleChange}
-                                                    inputProps={{'aria-label': 'controlled'}}
-                                                    color="warning"
-                />theme</Typography>
-                <Button sx={{ml: 153}} onClick={disconnectFromWallet}>Disconnect</Button>
+                <Typography align={"right"}><Switch checked={toogleTheme} onChange={handleChange} inputProps={{'aria-label': 'controlled'}} color="warning"/>theme</Typography>
+                <Button sx={{ml: 153}} onClick={disconnectFromWallet} variant={"contained"}>Disconnect</Button>
             </AppBar>
             <CssBaseline/>
             <TabsLayout/>
