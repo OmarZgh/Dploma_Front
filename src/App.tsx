@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import Layout from "./Layout/Layout";
 import {Button, createTheme, Typography} from "@mui/material";
@@ -45,8 +45,9 @@ function App() {
                     isMetamaskInstalled ? (
                         <div>
                             <Typography variant={"h1"}>Welcome to Dploma </Typography>
-                            <Typography>Connect Your Metamask Wallet</Typography>
-                            <Button variant={"outlined"} onClick={connectMetamaskWallet}> Here</Button>
+                            <Typography sx={{mb:3}}>Connect Your Metamask Wallet</Typography>
+
+                            <Button variant={"outlined"}size={"large"} onClick={connectMetamaskWallet}> Here</Button>
                         </div>
                     ) : (<>
                             <Typography variant={"h1"}>Welcome to Dploma </Typography>
@@ -66,7 +67,6 @@ function App() {
         <div className="App">
             <Layout theme={theme} darkTheme={darkTheme} setEthereumAccount={setEthereumAccount}
                     ethereumAccount={ethereumAccount}/>
-
         </div>
 
     );

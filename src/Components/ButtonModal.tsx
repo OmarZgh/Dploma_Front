@@ -30,7 +30,7 @@ const ButtonModal = (props: props) => {
                     {title}
                 </Typography>
                 <Divider/>
-                <Typography sx={{mb: 2}} variant="body2" color="text.secondary">
+                <Typography  gutterBottom sx={{mb: 2,mt:1}} variant="body2" color="text.secondary">
                     {description}
                 </Typography>
                 <div>{children}</div>

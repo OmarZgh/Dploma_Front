@@ -5,19 +5,18 @@ import {useState} from "react";
 const Register = () => {
 
     const [open, setOpen] = useState(false);
-    return (<Container  style={{display:"flex"}}>
+    return (<Container style={{display: "flex"}}>
 
             <Grid container spacing={2}>
-                <Grid item xs={1} lg={4}>
-                    <ButtonModal title={"Template"} description={"Test de descreuotio kljhbkhsbkd kbkjhsbfkhbcskjhc slijbfclksjhbdl"} image={"https://picsum.photos/200"}>
-                        <Button variant={"contained"}>Helo</Button>
-                    </ButtonModal>
+                <Grid item xs={12} lg={4}>
+                    <ButtonModal title={"Register a Template"}
+                                 description={"Define a template in order to use it with multiple registration"}/>
                 </Grid>
-                <Grid item xs={1} lg={4}>
-                    <ButtonModal title={"Template"} description={""}/>
+                <Grid item xs={12} lg={4}>
+                    <ButtonModal title={"Register with template"} description={"provider"}/>
                 </Grid>
-                <Grid item xs={1} lg={4}>
-                    <ButtonModal title={"Template"} description={""}/>
+                <Grid item xs={12} lg={4}>
+                    <ButtonModal title={"Register without template"} description={""}/>
                 </Grid>
 
             </Grid>
