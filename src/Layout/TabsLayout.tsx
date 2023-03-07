@@ -8,6 +8,7 @@ import FormLayout from "../Components/FormLayout";
 import GetDplomaCard from "../Components/GetDplomaCard";
 import InputForm from "../Components/InputForm";
 import Register from "../Pages/Register";
+import ModifyDelete from "../Pages/ModifyAndDelete";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -65,7 +66,7 @@ export default function TabsLayout() {
                 <Register/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <ModifyDelete/>
             </TabPanel>
         </Box>
     );
