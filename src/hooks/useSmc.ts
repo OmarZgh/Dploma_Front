@@ -1,19 +1,28 @@
 import {getDploma} from "../Services/Web3APi";
 import {useEffect, useState} from "react";
+import {IDploma} from "../type";
 
 
 
-export const useSmc = () => {
-    const fetchWeb3 = async (id: string) => {
-        return  await getDploma(id).then((res: any) => {
-            console.log(res)
-            return res
-        })
-    }
-    const [log, setLog] = useState("")
+const fetchWeb3 = async (id?:string|undefined) => {
+    return id!?await getDploma(id).then((res: IDploma) => {
+        const certif: IDploma = res
+        return certif
+    }):undefined
+}
+export const useSmc = (props:{id:string}|undefined) => {
+    const id = props?.id
+    const [certification, setCertification] = useState<IDploma>()
 
+    useEffect(() => {
+        const fetchDploma = async () => {
+            setCertification(await fetchWeb3(id))
+        }
+        fetchDploma()
+    }, [])
 
-    return {log, fetchWeb3: fetchWeb3}
+    console.log("certification", certification)
+    return {certification,fetchWeb3:fetchWeb3}
 }
 
 
