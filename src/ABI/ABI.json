@@ -1,0 +1,382 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "certifCreation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "deletedCertif",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "name": "evtTemplate",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "evtVisisbility",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "name": "modificationMsg",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_hashCert",
+        "type": "bytes32"
+      }
+    ],
+    "name": "DeleteCertif",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_hashCert",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_date",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_specs",
+        "type": "string[]"
+      }
+    ],
+    "name": "ModifyTemplate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_date",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_specs",
+        "type": "string[]"
+      }
+    ],
+    "name": "createTemplate",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_hashCert",
+        "type": "bytes32"
+      }
+    ],
+    "name": "getCertification",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "dip_addr_certifier",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "dip_addr_certified",
+            "type": "address"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "cfied_firstname",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "cfied_lastname",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "cfied_birthdate",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct Dploma.Certified",
+            "name": "dip_certified",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "cfier_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "cfier_adress",
+                "type": "string"
+              }
+            ],
+            "internalType": "struct Dploma.Certifier",
+            "name": "dip_cedrtifier",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "temp_title",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "temp_name",
+                "type": "string"
+              },
+              {
+                "internalType": "string",
+                "name": "temp_date",
+                "type": "string"
+              },
+              {
+                "internalType": "string[]",
+                "name": "temp_spec",
+                "type": "string[]"
+              }
+            ],
+            "internalType": "struct Dploma.Template",
+            "name": "dip_template",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct Dploma.Certification",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_cfied_firstname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfied_lastname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfied_birthdate",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfier_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfier_adress",
+        "type": "string"
+      },
+      {
+        "internalType": "bytes32",
+        "name": "_hashTemplate",
+        "type": "bytes32"
+      },
+      {
+        "internalType": "address",
+        "name": "_certified_pub_adress",
+        "type": "address"
+      }
+    ],
+    "name": "insertWithTemplate",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_cfied_firstname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfied_lastname",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfied_birthdate",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfier_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_cfier_adress",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_certified_pub_adress",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "_title",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "string",
+        "name": "_date",
+        "type": "string"
+      },
+      {
+        "internalType": "string[]",
+        "name": "_specs",
+        "type": "string[]"
+      }
+    ],
+    "name": "insertWithoutTemplate",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "_hashCert",
+        "type": "bytes32"
+      }
+    ],
+    "name": "toggleStudentVisibility",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]

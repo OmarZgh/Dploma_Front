@@ -1,14 +1,11 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
+import Tab, {TabProps} from '@mui/material/Tab';
 
 import Box from '@mui/material/Box';
-import FindAndExplore from "../Pages/FindAndExplore.Component";
-import FormLayout from "../Components/FormLayout";
-import GetDplomaCard from "../Components/GetDplomaCard";
-import InputForm from "../Components/InputForm";
-import Register from "../Pages/Register";
-import ModifyDelete from "../Pages/ModifyAndDelete";
+import {Link, Outlet} from "react-router-dom";
+import TabLink from "../Components/Tablink";
+
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -36,12 +33,7 @@ function TabPanel(props: TabPanelProps) {
     );
 }
 
-function a11yProps(index: number) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
+
 
 export default function TabsLayout() {
     const [value, setValue] = React.useState(0);
@@ -54,20 +46,13 @@ export default function TabsLayout() {
         <Box sx={{width: '100%'}}>
             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                    <Tab label="Find and explore" {...a11yProps(0)} />
-                    <Tab label="Register " {...a11yProps(1)} />
-                    <Tab label="Modify & Delete" {...a11yProps(2)} />
+
+                    <TabLink label="Find and Explort" to="/find"/>
+                    <TabLink label="Register" to="/modify"/>
+                    <TabLink label="Modify" to="/"/>
                 </Tabs>
-            </Box>
-            <TabPanel value={value} index={0}>
-                <FindAndExplore/>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                <Register/>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                <ModifyDelete/>
-            </TabPanel>
+            </Box>¨
+            <Outlet/>
         </Box>
     );
 }
