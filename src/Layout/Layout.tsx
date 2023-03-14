@@ -40,12 +40,7 @@ const Layout = (props: props) => {
             </AppBar>
             <CssBaseline/>
             <TabsLayout/>
-            <Routes>
-                <Route path={"/find"} element={<FindAndExplore/>}/>
-                <Route path={"/register"} element={<div>Reg</div>}/>
-                <Route path={"/modify"} element={<div>mod</div>}/>
-                <Route path={"/"} element={<div>home</div>}/>
-            </Routes>
+
 
             <Typography>You are connected with{account} </Typography>
             <Footer/>

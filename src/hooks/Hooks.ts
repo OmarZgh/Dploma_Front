@@ -10,8 +10,10 @@ export function connexioStatus() {
 function handleAccountsChanged(accounts: string[]) {
     if (accounts.length === 0) {
         console.log("Not connected to MetaMask.");
+        return false;
     } else {
         console.log("Connected to MetaMask.");
+        return true;
     }
 }
 
@@ -33,7 +35,7 @@ export const useWeb3 = () => {
         };
 
         fetchWeb3();
-    }, []);
+    }, [connected]);
 
     return { connected, account, connect: handleConnect };
 };
