@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {useWeb3} from "../hooks/Hooks";
 import FindAndExplore from "../Pages/FindAndExplore.Component";
+import ModifyAndDelete from "../Pages/ModifyAndDelete";
+import Register from "../Pages/Register";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -45,7 +47,9 @@ export default function BasicTabs() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
+
    const  {connect,connected}= useWeb3()
+
     return (
         <Box sx={{ width: '100%' }}>
             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -59,10 +63,10 @@ export default function BasicTabs() {
                 <FindAndExplore/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                <Register/>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                <ModifyAndDelete/>
             </TabPanel>
         </Box>
     );

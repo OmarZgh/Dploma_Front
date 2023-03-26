@@ -9,6 +9,7 @@ interface props {
     backgroundColor?: string,
 }
 
+//Boost le design - utiliser ce composant pour les formulaires de chaque pages (Register, Modify, FindAndExplore)
 const formLayout = (props: props) => {
     const {children, title, description, backgroundColor} = props
     return (

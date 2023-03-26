@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
-
 import {Dploma} from "../../Type/Types";
 import {getDploma} from "../Services/Web3APi";
 import {useSmc} from "../hooks/useSmc";
@@ -8,6 +7,7 @@ import {Button, Input} from "@mui/material";
 import {IDploma} from "../type";
 import Box from "@mui/material/Box";
 import DisplayDiploma from "../Components/DisplayDiploma";
+import FormLayout from "../Components/FormLayout";
 
 const FindAndExplore = () => {
     const [dplomas, setDplomas] = useState<IDploma | undefined>();
@@ -27,11 +27,14 @@ const FindAndExplore = () => {
     }
     useEffect(() => {  }, [dplomas])
     return (
-        <Box>
-            <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
-            <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
-            <DisplayDiploma diplomas={dplomas}/>
-        </Box>
+        <FormLayout title={"Find"} description={"Explore diplomas"}>
+            <Box>
+                <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
+                <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
+                <DisplayDiploma diplomas={dplomas}/>
+            </Box>
+        </FormLayout>
+
         //Display the Dplomas
 
     )
