@@ -26,7 +26,8 @@ const FindAndExplore = () => {
         })
     }
     useEffect(() => {  }, [dplomas])
-    return (<Box>
+    return (
+        <Box>
             <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
             <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
             <DisplayDiploma diplomas={dplomas}/>

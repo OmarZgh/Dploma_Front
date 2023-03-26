@@ -36,7 +36,6 @@ const Layout = (props: props) => {
                 <Typography align={"right"}><Switch checked={toogleTheme} onChange={handleChange}
                                                     inputProps={{'aria-label': 'controlled'}}
                                                     color="warning"/>theme</Typography>
-                <Button sx={{ml: 153}} onClick={connect} variant={"contained"}>Disconnect</Button>
             </AppBar>
             <CssBaseline/>
             <TabsLayout/>

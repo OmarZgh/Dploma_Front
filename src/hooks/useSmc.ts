@@ -21,7 +21,7 @@ export const useSmc = (props:{id:string}|undefined) => {
         fetchDploma()
     }, [])
 
-    console.log("certification", certification)
+
     return {certification,fetchWeb3:fetchWeb3}
 }
 
