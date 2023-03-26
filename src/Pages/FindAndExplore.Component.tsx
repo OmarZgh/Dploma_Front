@@ -8,11 +8,12 @@ import {Button, Input} from "@mui/material";
 import {IDploma} from "../type";
 import Box from "@mui/material/Box";
 import DisplayDiploma from "../Components/DisplayDiploma";
+import FormLayout from "../Components/FormLayout";
 
 const FindAndExplore = () => {
     const [dplomas, setDplomas] = useState<IDploma | undefined>();
     const [hash, setHash] = useState<any>({id: ""})
-    const {certification, fetchWeb3} = useSmc(undefined)
+    const { fetchWeb3} = useSmc(undefined)
 
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -27,12 +28,13 @@ const FindAndExplore = () => {
     }
     useEffect(() => {  }, [dplomas])
     return (
-        <Box>
-            <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
-            <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
-            <DisplayDiploma diplomas={dplomas}/>
-        </Box>
-        //Display the Dplomas
+        <FormLayout title={"find"} description={"search for a diploma"}>
+            <Box>
+                <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
+                <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
+                <DisplayDiploma diplomas={dplomas}/>
+            </Box>
+        </FormLayout>        //Display the Dplomas
 
     )
 
