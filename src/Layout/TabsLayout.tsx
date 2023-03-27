@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {useWeb3} from "../hooks/Hooks";
-import FindAndExplore from "../Pages/FindAndExplore.Component";
+import FindAndExplore from "../Pages/FindAndExplore";
 import InstallMetamask from "../Pages/InstallMetamask";
+import Register from "../Pages/Register";
+import Modification from "../Pages/Modification";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -46,7 +47,7 @@ export default function BasicTabs() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    const {connect, connected, metamasInstalled} = useWeb3()
+    const { metamasInstalled} = useWeb3()
     return (
         <Box sx={{width: '100%'}}>
             <Box sx={{borderBottom:2, borderColor: 'divider'}}>
@@ -60,10 +61,10 @@ export default function BasicTabs() {
                 <FindAndExplore/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                {metamasInstalled ?<div>Item Two</div>:<InstallMetamask/>}
+                {metamasInstalled ?<Register/>:<InstallMetamask/>}
             </TabPanel>
             <TabPanel value={value} index={2}>
-                Item Three
+                {metamasInstalled ?<Modification/>:<InstallMetamask/>}
             </TabPanel>
         </Box>
     );

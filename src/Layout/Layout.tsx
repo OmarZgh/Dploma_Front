@@ -1,11 +1,10 @@
 import {ThemeProvider} from "@emotion/react";
-import {AppBar, createTheme, CssBaseline, Typography, Switch, Button, Theme} from "@mui/material";
+import {AppBar,  CssBaseline, Typography, Switch, Theme} from "@mui/material";
 import TabsLayout from "./TabsLayout";
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import Footer from "../Components/Footer";
 import {useWeb3} from "../hooks/Hooks";
-import {Route, Routes} from "react-router-dom";
-import FindAndExplore from "../Pages/FindAndExplore.Component";
+
 
 
 
