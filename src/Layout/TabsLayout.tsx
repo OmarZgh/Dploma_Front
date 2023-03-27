@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {useWeb3} from "../hooks/Hooks";
 import FindAndExplore from "../Pages/FindAndExplore.Component";
+import InstallMetamask from "../Pages/InstallMetamask";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -13,7 +14,7 @@ interface TabPanelProps {
 }
 
 function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
     return (
         <div
@@ -24,7 +25,7 @@ function TabPanel(props: TabPanelProps) {
             {...other}
         >
             {value === index && (
-                <Box sx={{ p: 3 }}>
+                <Box sx={{p: 3}}>
                     <>{children}</>
                 </Box>
             )}
@@ -45,10 +46,10 @@ export default function BasicTabs() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-   const  {connect,connected}= useWeb3()
+    const {connect, connected, metamasInstalled} = useWeb3()
     return (
-        <Box sx={{ width: '100%' }}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+        <Box sx={{width: '100%'}}>
+            <Box sx={{borderBottom:2, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Find and Explore" {...a11yProps(0)} />
                     <Tab label="Register" {...a11yProps(1)} />
@@ -59,7 +60,7 @@ export default function BasicTabs() {
                 <FindAndExplore/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                Item Two
+                {metamasInstalled ?<div>Item Two</div>:<InstallMetamask/>}
             </TabPanel>
             <TabPanel value={value} index={2}>
                 Item Three

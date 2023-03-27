@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
 export function connexioStatus() {
     return (window as any)
-        .ethereum.request({ method: "eth_accounts" })
+        .ethereum.request({method: "eth_accounts"})
         .then(handleAccountsChanged)
         .catch(console.error);
 }
@@ -19,7 +19,7 @@ function handleAccountsChanged(accounts: string[]) {
 
 export function handleConnect() {
     (window as any)
-        .ethereum.request({ method: "eth_requestAccounts" })
+        .ethereum.request({method: "eth_requestAccounts"})
         .then(handleAccountsChanged)
         .catch(console.error);
 }
@@ -27,6 +27,7 @@ export function handleConnect() {
 export const useWeb3 = () => {
     const [connected, setConnected] = useState(false);
     const [account, setAccount] = useState("");
+    const [MetamasInstalled, setMetamaskInstalled] = useState(false);
 
     useEffect(() => {
         const fetchWeb3 = async () => {
@@ -37,5 +38,16 @@ export const useWeb3 = () => {
         fetchWeb3();
     }, [connected]);
 
-    return { connected, account, connect: handleConnect };
+    useEffect(() => {
+        if ((window as any).ethereum) {
+            //check if Metamask wallet is installed
+            setMetamaskInstalled(true);
+        }
+    }, []);
+    return {
+        connected,
+        account,
+        metamasInstalled: MetamasInstalled,
+        connect: handleConnect
+    };
 };
