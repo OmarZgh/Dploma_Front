@@ -45,6 +45,9 @@ const Layout = (props: props) => {
                 <Footer/>
             </ThemeProvider>
 
+            {/*pernmet de faire la lecture via QR code  de la certification avec l url suivant:
+            exemple  http://localhost:3000/id=0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C
+            */}
             <Routes>
                 <Route path={"/"} element={<FindAndExplore/>}>
                     <Route path={":id"} element={<FindAndExplore/>}/>
