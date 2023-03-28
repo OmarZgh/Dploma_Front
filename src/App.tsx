@@ -15,11 +15,11 @@ function App() {
     )
 
     return (
-        <BrowserRouter>
+
             <div className="App">
                 <Layout theme={theme} darkTheme={darkTheme}/>
             </div>
-        </BrowserRouter>
+
 
     );
 }

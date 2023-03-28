@@ -7,6 +7,7 @@ import FindAndExplore from "../Pages/FindAndExplore";
 import InstallMetamask from "../Pages/InstallMetamask";
 import Register from "../Pages/Register";
 import Modification from "../Pages/Modification";
+import {Outlet} from "react-router";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -47,10 +48,11 @@ export default function BasicTabs() {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    const { metamasInstalled} = useWeb3()
+    const {metamasInstalled} = useWeb3()
     return (
+
         <Box sx={{width: '100%'}}>
-            <Box sx={{borderBottom:2, borderColor: 'divider'}}>
+            <Box sx={{borderBottom: 2, borderColor: 'divider'}}>
                 <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                     <Tab label="Find and Explore" {...a11yProps(0)} />
                     <Tab label="Register" {...a11yProps(1)} />
@@ -58,13 +60,13 @@ export default function BasicTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <FindAndExplore/>
+                <Outlet/>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                {metamasInstalled ?<Register/>:<InstallMetamask/>}
+                {metamasInstalled ? <Register/> : <InstallMetamask/>}
             </TabPanel>
             <TabPanel value={value} index={2}>
-                {metamasInstalled ?<Modification/>:<InstallMetamask/>}
+                {metamasInstalled ? <Modification/> : <InstallMetamask/>}
             </TabPanel>
         </Box>
     );
