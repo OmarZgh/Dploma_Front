@@ -9,15 +9,16 @@ import {IDploma} from "../type";
 import Box from "@mui/material/Box";
 import DisplayDiploma from "../Components/DisplayDiploma";
 import FormLayout from "../Components/FormLayout";
-import {useParams} from "react-router-dom";
-import {hydrate} from "react-dom";
+import {useLocation} from "react-router-dom";
+
 
 const FindAndExplore = (props:any) => {
     const [dplomas, setDplomas] = useState<IDploma | undefined>();
     const [hash, setHash] = useState<any>({id: ""})
     const { fetchWeb3} = useSmc(undefined)
-    const {id}=useParams()
-
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('id');
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         setHash({id: event.target.value})
     }
@@ -33,8 +34,7 @@ const FindAndExplore = (props:any) => {
     console.log(id)
     useEffect(() => {
         if(id){
-            let hash= id.split("=")[1]
-            let promise = fetchWeb3(hash);
+            let promise = fetchWeb3(id);
             promise.then((res) => {
                 return setDplomas(res)
             })

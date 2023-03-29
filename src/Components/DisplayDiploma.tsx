@@ -10,10 +10,10 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
     const {diplomas} = props
 
     return (
-        <Box sx={{m: 5, p: 3}}>
+        <Box sx={{m: 5, p: 3 ,display:"-ms-flexbox"}}>
             {diplomas! ? (
                     <>
-                        <Paper sx={{m: 1 ,p:3}}>
+                        <Paper sx={{mt: 1 ,p:3 ,display:"box"}}>
                             <Typography variant={"h3"} color={"primary"}align={"left"}>Certifier</Typography>
                             <Divider/>
                             <Typography align={"left"} color={"primary"}><strong>Public address :</strong> {diplomas?.dip_addr_certifier}

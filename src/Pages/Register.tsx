@@ -2,6 +2,7 @@ import {Button, Container, Grid} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
 import {useState} from "react";
 import {useWeb3} from "../hooks/Hooks";
+import QRcode from "../Components/QRcode";
 
 const Register = () => {
 
@@ -22,7 +23,7 @@ const Register = () => {
                 </Grid>
 
         </Grid>:"not connected"}
-
+        <QRcode hash={ "0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C"}/>npm
         </Container>
     )
 }
