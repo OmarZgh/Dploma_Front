@@ -3,11 +3,13 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import {useWeb3} from "../hooks/Hooks";
-import FindAndExplore from "../Pages/FindAndExplore";
+
 import InstallMetamask from "../Pages/InstallMetamask";
 import Register from "../Pages/Register";
 import Modification from "../Pages/Modification";
 import {Outlet} from "react-router";
+import {Route, Routes} from "react-router-dom";
+import FindAndExplore from "../Pages/FindAndExplore";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -60,7 +62,14 @@ export default function BasicTabs() {
                 </Tabs>
             </Box>
             <TabPanel value={value} index={0}>
-                <Outlet/>
+                {/*pernmet de faire la lecture via QR code  de la certification avec l url suivant:
+            exemple  http://localhost:3000/?id=0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C
+            */}
+                <Routes>
+                    <Route path={""} element={<FindAndExplore/>}>
+                        <Route path={":id"} element={<FindAndExplore/>}/>
+                    </Route>
+                </Routes>
             </TabPanel>
             <TabPanel value={value} index={1}>
                 {metamasInstalled ? <Register/> : <InstallMetamask/>}

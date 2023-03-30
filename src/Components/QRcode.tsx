@@ -1,6 +1,8 @@
 import {QRCodeCanvas, QRCodeSVG} from "qrcode.react";
 import {Button} from "@mui/material";
 import Box from "@mui/material/Box";
+import {Env} from "../Env";
+import DOMAIN = Env.DOMAIN;
 
 interface IProps {
     hash?: string
@@ -28,7 +30,7 @@ const QRcode = (props: IProps) => {
         <Box display={"flex"} flexDirection={"column"}>
             <QRCodeCanvas
                 id="qrcode"
-                value={"https://react.nogadev.ch/?id=" + hash}
+                value={DOMAIN+"?id=" + hash}
                 size={256}>
             </QRCodeCanvas>
             <Button onClick={downloadQR}> Download QR </Button>
