@@ -10,6 +10,7 @@ import Modification from "../Pages/Modification";
 import {Outlet} from "react-router";
 import {Route, Routes} from "react-router-dom";
 import FindAndExplore from "../Pages/FindAndExplore";
+import {Container} from "@mui/material";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -65,18 +66,25 @@ export default function BasicTabs() {
                 {/*pernmet de faire la lecture via QR code  de la certification avec l url suivant:
             exemple  http://localhost:3000/?id=0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C
             */}
-                <Routes>
-                    <Route path={""} element={<FindAndExplore/>}>
-                        <Route path={":id"} element={<FindAndExplore/>}/>
-                    </Route>
-                </Routes>
+                <Container>
+                    <Routes>
+                        <Route path={""} element={<FindAndExplore/>}>
+                            <Route path={":id"} element={<FindAndExplore/>}/>
+                        </Route>
+                    </Routes>
+                </Container>
             </TabPanel>
             <TabPanel value={value} index={1}>
-                {metamasInstalled ? <Register/> : <InstallMetamask/>}
+                <Container>
+                    {metamasInstalled ? <Register/> : <InstallMetamask/>}
+                </Container>
             </TabPanel>
             <TabPanel value={value} index={2}>
-                {metamasInstalled ? <Modification/> : <InstallMetamask/>}
+                <Container>
+                    {metamasInstalled ? <Modification/> : <InstallMetamask/>}
+                </Container>
             </TabPanel>
+
         </Box>
     );
 }

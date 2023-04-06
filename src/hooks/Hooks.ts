@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export function connexioStatus() {
+export function connexionStatus() {
     return (window as any)
         .ethereum.request({method: "eth_accounts"})
         .then(handleAccountsChanged)
@@ -32,15 +32,14 @@ export const useWeb3 = () => {
     useEffect(() => {
         const fetchWeb3 = async () => {
             setAccount((window as any).ethereum.selectedAddress);
-            setConnected(await connexioStatus());
+            setConnected(await connexionStatus());
         };
 
         fetchWeb3();
-    }, [connected]);
+    }, [connected,account]);
 
     useEffect(() => {
         if ((window as any).ethereum) {
-            //check if Metamask wallet is installed
             setMetamaskInstalled(true);
         }
     }, []);

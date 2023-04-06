@@ -1,29 +1,61 @@
-import {Button, Container, Grid} from "@mui/material";
+import {Button, Container, Grid, Paper, Typography} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useWeb3} from "../hooks/Hooks";
 import QRcode from "../Components/QRcode";
+import FormModal from "../Components/FormModal";
+import FindAndExplore from "./FindAndExplore";
 
 const Register = () => {
 
     const [open, setOpen] = useState(false);
     const {connected, connect} = useWeb3()
-    return (<Container style={{display: "flex"}}>
+    const [clicked, setClicked] = useState(false)
+    const handleClick = () => {
+        setClicked(true)
+    }
+    useEffect(() => {
+        if (!connected) {
+            setClicked(false)
+        }
+    }, [connected])
 
-            {connected?<Grid container spacing={2}>
+    return (<Container fixed={true}>
+
+            {connected ? <Grid container spacing={2}>
                 <Grid item xs={12} lg={4}>
-                    <ButtonModal title={"Register a Template"}
-                                 description={"Define a template in order to use it with multiple registration"}/>
+                    <FormModal open={open} setOpen={setOpen} description={""} title={"Register a generic template"} action={"Certify"}>
+                        //insert Form here
+
+                    </FormModal>
+
                 </Grid>
                 <Grid item xs={12} lg={4}>
-                    <ButtonModal title={"Register with template"} description={"provider"}/>
+                    <FormModal open={open} setOpen={setOpen} description={""} title={"Register with template" }
+                               action={"Certify"}>
+                        //insert Form here
+                    </FormModal>
                 </Grid>
                 <Grid item xs={12} lg={4}>
-                    <ButtonModal title={"Register without template"} description={""}/>
+                    <FormModal open={open} setOpen={setOpen} description={""} title={"Register without template "} action={"certify"}>
+                        //insert Form here
+                    </FormModal>
                 </Grid>
 
-        </Grid>:"not connected"}
-        <QRcode hash={ "0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C"}/>npm
+            </Grid> : <Grid>
+                <Paper sx={{p: 2, m: 2, display: "flex", flexDirection: "column", alignItems: "center"}}
+                >
+                    {clicked ? <div><Typography>You are currently not connected with your metamask account</Typography>
+                            <Button variant={"outlined"} onClick={connect}>Connect</Button></div> :
+                        <div><Typography>You are currently not connected with your metamask account
+                        please chek your browser extensions
+                        </Typography></div>
+                 }
+
+                </Paper>
+
+            </Grid>}
+
         </Container>
     )
 }
