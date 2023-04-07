@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.TitleFormLayout {
+  text-align:left;
+}
+
+.SubTitleFormLayout {
+  text-align:left;
+}
+
+.DplomasFormLayout {
+  text-align:center;
+}
+
+.CustomInput {
+  background-color: #f8f8f8;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+  padding: 8px;
+  font-size: 16px;
+}

@@ -1,19 +1,30 @@
 import React, {useEffect, useState} from "react";
-import {Dploma} from "../../Type/Types";
 import Box from '@mui/material/Box';
-import {Button, Container, Fab, Grid, Input} from "@mui/material";
+import {Button, Container, Fab, Input, styled} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { red } from '@mui/material/colors';
 import DisplayDiploma from "../Components/DisplayDiploma";
 import {IDploma} from "../type";
 import {useSmc} from "../hooks/useSmc";
 import FormLayout from "../Components/FormLayout";
 
+const CustomButton = styled(Button)({
+    backgroundColor: 'rgba(0,60,255,0.47)',
+    border: '2px',
+    borderRadius: '4px',
+    padding: '8px 50px',
+    fontSize: '16px',
+    color: '#000',
+    cursor: 'pointer',
+    marginTop: '20px',
+    '&:hover': {
+        backgroundColor: 'rgba(0,0,0,0.51)',
+        color: '#fff',
+    },
+});
 
 const ModifyAndDelete = () => {
-    const third = red[500]; // #f44336
     const [dplomas, setDplomas] = useState<IDploma | undefined>();
     const [hash, setHash] = useState<any>({id: ""})
     const {certification, fetchWeb3} = useSmc(undefined)
@@ -38,12 +49,13 @@ const ModifyAndDelete = () => {
         })
     }
     useEffect(() => {  }, [dplomas])
+
     return (
         <Container>
-            <FormLayout title={"Modify & Delete"} description={""}>
+            <FormLayout title={"Modify & Delete"} description={"quelque chose"}>
                 <Box>
-                    <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
-                    <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
+                    <Input className="CustomInput" fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
+                    <CustomButton onClick={handleClick} variant={"contained"}>Find certification</CustomButton>
                     <DisplayDiploma diplomas={dplomas}/>
                 </Box>
             </FormLayout>
@@ -61,7 +73,6 @@ const ModifyAndDelete = () => {
                 <Fab onClick={doSomething} color="secondary" aria-label="edit">
                     <DeleteForeverIcon />
                 </Fab>
-
             </Box>
         </Container>
 
