@@ -1,7 +1,10 @@
-import {Button, Container, Grid,Modal, Typography} from "@mui/material";
+import {Button, Container, Grid, Input, Modal, Typography} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
-import {useState} from "react";
+import React, {useState} from "react";
 import RegisterTemplateForm from "../Components/RegisterTemplateForm";
+import FormLayout from "../Components/FormLayout";
+import Box from "@mui/material/Box";
+import DisplayDiploma from "../Components/DisplayDiploma";
 
 const Register = () => {
     const [open, setOpen] = useState(false);
@@ -24,15 +27,12 @@ const Register = () => {
                 );
             case "templateProvider":
                 return (
-                    <form>
-                        <label htmlFor="templateName">Nom du template :</label>
-                        <input type="text" id="templateName" name="templateName"/>
-
-                        <label htmlFor="templateDescription">Description :</label>
-                        <textarea id="templateDescription" name="templateDescription"></textarea>
-
-                        <Button variant="contained" color="primary" type="submit">Enregistrer</Button>
-                    </form>
+                    <FormLayout title={"test"} description={"test"}>
+                        <Box>
+                            <Input className="CustomInput" fullWidth={true} aria-label={"test"}></Input>
+                            <Button>Tester</Button>
+                        </Box>
+                    </FormLayout>
                 );
             case "noTemplate":
                 return (
