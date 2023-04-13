@@ -13,13 +13,14 @@ interface props {
     link?: string;
     action?: () => boolean,
     children?: React.ReactNode;
+    onClick: () => any;
 }
 
 const ButtonModal = (props: props) => {
     const {title, description, image, link, action,children} = props;
 
     return (
-        <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} onClick={action} style={{borderRadius: 20}}>
+        <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} onClick={props.onClick} style={{borderRadius: 20}}>
             <CardMedia
                 sx={{height: 140}}
                 image={image}
