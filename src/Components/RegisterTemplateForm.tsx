@@ -1,16 +1,22 @@
-import {Button} from "@mui/material";
+import {Button, FormControl, FormLabel, TextField} from "@mui/material";
 
-const RegisterTemplateForm = () => {
+
+interface props {
+    onSubmit: () => void;
+}
+const RegisterTemplateForm = (props: props) => {
+    const {onSubmit} = props
     return (
-        <form>
-            <label htmlFor="templateName">Nom du template :</label>
-            <input type="text" id="templateName" name="templateName" />
+        <FormControl>
+            <FormLabel>Enter Name</FormLabel>
+            <TextField placeholder={"name"} type="text" size='small'/>
+            <TextField placeholder={"name"} type="text" size='small'/>
+            <TextField placeholder={"name"} type="text" size='small'/>
+            <TextField placeholder={"name"} type="text" size='small'/>
+            <TextField type="date"></TextField>
+            <Button>Submit</Button>
 
-            <label htmlFor="templateDescription">Description :</label>
-            <textarea id="templateDescription" name="templateDescription"></textarea>
-
-            <Button variant="contained" color="primary" type="submit">Enregistrer</Button>
-        </form>
+        </FormControl>
     );
 };
 

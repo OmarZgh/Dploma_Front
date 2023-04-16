@@ -2,9 +2,6 @@ import {Button, Container, Grid, Input, Modal, Typography} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
 import React, {useState} from "react";
 import RegisterTemplateForm from "../Components/RegisterTemplateForm";
-import FormLayout from "../Components/FormLayout";
-import Box from "@mui/material/Box";
-import DisplayDiploma from "../Components/DisplayDiploma";
 
 const Register = () => {
     const [open, setOpen] = useState(false);
@@ -23,28 +20,17 @@ const Register = () => {
         switch (formType) {
             case "template":
                 return (
-                    <RegisterTemplateForm />
+                    <RegisterTemplateForm onSubmit={() => {
+                        console.log("submit")
+                    }}/>
                 );
             case "templateProvider":
                 return (
-                    <FormLayout title={"test"} description={"test"}>
-                        <Box>
-                            <Input className="CustomInput" fullWidth={true} aria-label={"test"}></Input>
-                            <Button>Tester</Button>
-                        </Box>
-                    </FormLayout>
+                    <RegisterTemplateForm onSubmit={() => {}}/>
                 );
             case "noTemplate":
                 return (
-                    <form>
-                        <label htmlFor="templateName">Nom du template :</label>
-                        <input type="text" id="templateName" name="templateName"/>
-
-                        <label htmlFor="templateDescription">Description :</label>
-                        <textarea id="templateDescription" name="templateDescription"></textarea>
-
-                        <Button variant="contained" color="primary" type="submit">Enregistrer</Button>
-                    </form>
+                    <RegisterTemplateForm onSubmit={() => {}}/>
                 );
             default:
                 return null;
@@ -74,12 +60,8 @@ const Register = () => {
                     bgcolor: 'background.paper',
                     boxShadow: 24,
                     p: 4}}>
-                    <Typography variant="h6" gutterBottom>
-                        Register
-                    </Typography>
-                    <Typography variant="subtitle1" gutterBottom>
-                        Please fill out the form below to register.
-                    </Typography>
+                    <Typography variant="h6">Register a template</Typography>
+                    <Typography variant="subtitle1">Please fill out the form below</Typography>
                     {renderForm()}
                 </Container>
             </Modal>
