@@ -2,6 +2,8 @@ import {Button, Container, Grid, Input, Modal, Typography} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
 import React, {useState} from "react";
 import RegisterTemplateForm from "../Components/RegisterTemplateForm";
+import RegisterTemplateProvider from "../Components/RegisterTemplateProvider";
+import RegisterWithoutTemplate from "../Components/RegisterWithoutTemplate";
 
 const Register = () => {
     const [open, setOpen] = useState(false);
@@ -26,11 +28,11 @@ const Register = () => {
                 );
             case "templateProvider":
                 return (
-                    <RegisterTemplateForm onSubmit={() => {}}/>
+                    <RegisterTemplateProvider onSubmit={() => {}}/>
                 );
             case "noTemplate":
                 return (
-                    <RegisterTemplateForm onSubmit={() => {}}/>
+                    <RegisterWithoutTemplate onSubmit={() => {}}/>
                 );
             default:
                 return null;
@@ -56,10 +58,11 @@ const Register = () => {
             </Grid>
 
             <Modal open={open} onClose={handleClose}>
-                <Container sx={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
+                <Container maxWidth="xl" sx={{position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '50%' ,
                     bgcolor: 'background.paper',
                     boxShadow: 24,
-                    p: 4}}>
+                    p: 4,
+                    maxWidth: 'none',}}>
                     <Typography variant="h6">Register a template</Typography>
                     <Typography variant="subtitle1">Please fill out the form below</Typography>
                     {renderForm()}
