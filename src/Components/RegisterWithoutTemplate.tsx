@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Button, FormControl, Container, TextField,InputLabel} from "@mui/material";
+import {Button, FormControl, Container, TextField} from "@mui/material";
 
 
 interface FormValues {
@@ -63,6 +63,7 @@ const RegisterWithoutTemplate = (props: props) => {
             <form onSubmit={handleSubmit}>
                 <FormControl sx={{ width: '100%' }}>
                     <TextField
+                        required={true}
                         name="certifiedFirstName"
                         placeholder="Certified First Name"
                         type="text"
@@ -72,6 +73,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifiedLastName"
                         placeholder="Certified Last Name"
                         type="text"
@@ -82,6 +84,7 @@ const RegisterWithoutTemplate = (props: props) => {
                     />
                     <text>Certified Birth Date</text>
                     <TextField
+                        required={true}
                         name="certifiedBirthDate"
                         type="date"
                         sx={{ mt: 1 }}
@@ -89,6 +92,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleBirthDateChange}
                     />
                     <TextField
+                        required={true}
                         name="certifierName"
                         placeholder="Certifier Name"
                         type="text"
@@ -98,6 +102,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifierPhysicalAdress"
                         placeholder="Certifier Physical Adress"
                         type="text"
@@ -107,6 +112,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifiedPublicAdress"
                         placeholder="Certified Public Adress"
                         type="text"
@@ -116,6 +122,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="templateTitle"
                         placeholder="Template title"
                         type="text"
@@ -125,6 +132,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="templateName"
                         placeholder="Template name"
                         type="text"
@@ -135,6 +143,7 @@ const RegisterWithoutTemplate = (props: props) => {
                     />
                     <text>Template Date</text>
                     <TextField
+                        required={true}
                         name="tempDate"
                         type="date"
                         sx={{ mt: 1 }}
@@ -142,6 +151,7 @@ const RegisterWithoutTemplate = (props: props) => {
                         onChange={handleDateChange}
                     />
                     <TextField
+                        required={true}
                         name="otherValues"
                         placeholder="Specs separated by comma ','"
                         type="text"

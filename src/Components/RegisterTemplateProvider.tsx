@@ -46,6 +46,7 @@ const RegisterTemplateProvider = (props: props) => {
             <form onSubmit={handleSubmit}>
                 <FormControl sx={{ width: '100%' }}>
                     <TextField
+                        required={true}
                         name="certifiedFirstName"
                         placeholder="Certified First Name"
                         type="text"
@@ -55,6 +56,7 @@ const RegisterTemplateProvider = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifiedLastName"
                         placeholder="Certified Last Name"
                         type="text"
@@ -65,6 +67,7 @@ const RegisterTemplateProvider = (props: props) => {
                     />
                     <text>Certified Birth Date</text>
                     <TextField
+                        required={true}
                         name="certifiedBirthDate"
                         type="date"
                         sx={{ mt: 1 }}
@@ -72,6 +75,7 @@ const RegisterTemplateProvider = (props: props) => {
                         onChange={handleBirthDateChange}
                     />
                     <TextField
+                        required={true}
                         name="certifierName"
                         placeholder="Certifier Name"
                         type="text"
@@ -81,6 +85,7 @@ const RegisterTemplateProvider = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifierAdress"
                         placeholder="Certifier Adress"
                         type="text"
@@ -90,6 +95,7 @@ const RegisterTemplateProvider = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="hashTemplate"
                         placeholder="Hash Template"
                         type="text"
@@ -99,6 +105,7 @@ const RegisterTemplateProvider = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="certifiedPublicAdress"
                         placeholder="Certified Public Adress"
                         type="text"

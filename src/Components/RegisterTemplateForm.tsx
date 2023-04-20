@@ -47,6 +47,7 @@ const RegisterTemplateForm = (props: props) => {
             <form onSubmit={handleSubmit}>
                 <FormControl sx={{ width: '100%' }}>
                     <TextField
+                        required={true}
                         name="templateTitle"
                         placeholder="Template title"
                         type="text"
@@ -56,6 +57,7 @@ const RegisterTemplateForm = (props: props) => {
                         onChange={handleInputChange}
                     />
                     <TextField
+                        required={true}
                         name="templateName"
                         placeholder="Template name"
                         type="text"
@@ -66,6 +68,7 @@ const RegisterTemplateForm = (props: props) => {
                     />
                     <text>Template Date</text>
                     <TextField
+                        required={true}
                         name="date"
                         type="date"
                         sx={{ mt: 1 }}
@@ -73,6 +76,7 @@ const RegisterTemplateForm = (props: props) => {
                         onChange={handleDateChange}
                     />
                     <TextField
+                        required={true}
                         name="otherValues"
                         placeholder="Specs separated by comma ','"
                         type="text"
