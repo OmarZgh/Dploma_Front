@@ -9,20 +9,23 @@ import ButtonModal from "./ButtonModal";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+import FormLayout from "./FormLayout";
+import RegisterTemplateForm from "./RegisterTemplateForm";
+import DialogContext from "@mui/material/Dialog/DialogContext";
 
 interface Iprops {
-    children: React.ReactNode,
+    children?: React.ReactNode,
     open: boolean,
-   setOpen:Dispatch<SetStateAction<boolean>>
-    title?: string,
-    description?: string,
+    setOpen: Dispatch<SetStateAction<boolean>>
+    title?: string | undefined,
+    description?: string | undefined,
     action?: string,
 
 }
 
-const FormModal = (props: Iprops) => {
+const FormModalTemplate = (props: Iprops) => {
 
-    const {children,open=false,setOpen,title,description,action} = props;
+    const {children, open = false, setOpen, title, description, action} = props;
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -35,42 +38,39 @@ const FormModal = (props: Iprops) => {
         <div>
 
 
-
-            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}}  style={{borderRadius: 20}}>
+            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
                     </Typography>
                     <Divider/>
-                    <Typography  gutterBottom sx={{mb: 2,mt:1}} variant="body2" color="text.secondary">
+                    <Typography gutterBottom sx={{mb: 2, mt: 1}} variant="body2" color="text.secondary">
                         {description}
                     </Typography>
 
-                    <Button variant={"contained"}  onClick={handleClickOpen}>
+                    <Button variant={"contained"} onClick={handleClickOpen}>
                         {action}
                     </Button>
                 </CardContent>
             </Card>
             <Dialog
-                sx={{ borderRadius: 20}}
+                sx={{borderRadius: 20}}
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
                 aria-describedby="alert-dialog-description"
+
             >
-                <DialogContent>
-                    {children}
+                <DialogContent> <FormLayout title={title}
+                                            description={description}></FormLayout><RegisterTemplateForm></RegisterTemplateForm>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Disagree</Button>
-                    <Button onClick={handleClose} autoFocus>
-                        Agree
-                    </Button>
+                    <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>
         </div>)
 
 }
 
-export default FormModal
+export default FormModalTemplate
