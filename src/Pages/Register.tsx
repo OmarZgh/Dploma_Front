@@ -23,6 +23,7 @@ const Register = () => {
         setClicked(true)
     }
     useEffect(() => {
+        connect()
         if (!connected) {
             setClicked(false)
         }
@@ -49,9 +50,10 @@ const Register = () => {
                     </FormModalInsertWithouTemplate>
                 </Grid>
                 <Grid item xs={12} lg={4}>
+                    <Paper>
                     <FormLayout title={"Test QR Code"} description={"Scan and download QR to fetch the certification"}>
-                        <QRcode hash={"0x9B454B54E056C0BD6B182B70145319402A030FB6E7A1B980D16341F33B473D8C"}/></FormLayout>
-
+                        <QRcode hash={"0x6DFB986F6E058B90F56B2B44834203E3045C85EEAC8D03D0A4345CF89093444D"}/></FormLayout>
+                    </Paper>
                 </Grid>
 
             </Grid> : <Grid>
