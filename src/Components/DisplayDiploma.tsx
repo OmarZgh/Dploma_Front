@@ -21,10 +21,10 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
                                 :</strong> {diplomas?.dip_addr_certifier}
                             </Typography>
                             <Typography noWrap={true} align={"left"} color={"primary"}><strong>Name
-                                :</strong> {diplomas?.dip_cedrtifier?.cfier_name}
+                                :</strong> {diplomas?.dip_certifier?.cfier_name}
                             </Typography>
                             <Typography noWrap={true} align={"left"} color={"primary"}><strong>Physical address
-                                :</strong> {diplomas?.dip_cedrtifier?.cfier_adress}</Typography>
+                                :</strong> {diplomas?.dip_certifier?.cfier_adress}</Typography>
 
                         </Grid>
                         <Grid item={true} xs={12} md={6}>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {Button, FormControl, Container, TextField} from "@mui/material";
+import {useSmc} from "../hooks/useSmc";
+import {ICertified, ICertifier, IDploma, ITemplate} from "../type";
 
 
 interface FormValues {
@@ -17,15 +19,15 @@ interface props {
 }
 const FormInsertWithTemplate = (props: props) => {
     const {onSubmit} = props
-    const [formValues, setFormValues] = useState<FormValues>({
-        certifiedFirstName: "",
-        certifiedLastName: "",
-        certifiedBirthDate: new Date(),
-        certifierName: "",
-        certifierAdress: "",
-        hashTemplate: "",
-        certifiedPublicAdress: "",
+    const [formValues, setFormValues] = useState<IDploma>({
+        dip_addr_certified: "",
+        dip_addr_certifier: "",
+        dip_certifier:{cfier_name : "",cfier_adress: ""},
+        dip_certified:{cfied_firstname : "",cfied_lastname: "",cfied_birthdate: ""},
+        dip_hash: "",
     });
+
+    const {insertWithTemplate} = useSmc(undefined);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         setFormValues(prevValues => ({...prevValues, [name]: value}));
@@ -38,7 +40,7 @@ const FormInsertWithTemplate = (props: props) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-      //  onSubmit(formValues);
+        insertWithTemplate(formValues);
     };
 
     return (
@@ -52,7 +54,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedFirstName}
+                        value={formValues.dip_certifier?.cfier_name}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -62,7 +64,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedLastName}
+                        value={formValues.dip_certified?.cfied_lastname}
                         onChange={handleInputChange}
                     />
                     <text>Certified Birth Date</text>
@@ -71,7 +73,7 @@ const FormInsertWithTemplate = (props: props) => {
                         name="certifiedBirthDate"
                         type="date"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedBirthDate.toISOString().substring(0, 10)}
+                        value={formValues.dip_certified?.cfied_birthdate/*toISOString().substring(0, 10)*/}
                         onChange={handleBirthDateChange}
                     />
                     <TextField
@@ -81,7 +83,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifierName}
+                        value={formValues.dip_certifier?.cfier_name}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -91,7 +93,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifierAdress}
+                        value={formValues.dip_certifier?.cfier_adress}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -101,7 +103,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.hashTemplate}
+                        value={formValues.dip_hash}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -111,7 +113,7 @@ const FormInsertWithTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedPublicAdress}
+                        value={formValues.dip_addr_certified}
                         onChange={handleInputChange}
                     />
 

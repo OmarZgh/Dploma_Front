@@ -1,6 +1,6 @@
 import {getDploma} from "../Services/Web3APi";
 import {useEffect, useState} from "react";
-import {IDploma} from "../type";
+import {IDploma, ITemplate} from "../type";
 
 
 
@@ -10,6 +10,32 @@ const fetchWeb3 = async (id?:string|undefined) => {
         return certif
     }):undefined
 }
+
+const insertTemplate = (template : ITemplate)=>{
+    return null;
+}
+const insertWithoutTemplate = (template : IDploma)=>{
+
+    return null;
+}
+const insertWithTemplate = (template : IDploma)=>{
+    console.log("insert "+template)
+    return null;
+}
+const deleteCertif = (template : string)=>{
+
+    return null;
+}
+const modifyTemplate = (template : ITemplate, hash : string)=>{
+
+    return null;
+}
+
+const toggleVisibility = (hash : string)=>{
+
+    return null;
+}
+
 export const useSmc = (props:{id:string}|undefined) => {
     const id = props?.id
     const [certification, setCertification] = useState<IDploma>()
@@ -22,7 +48,7 @@ export const useSmc = (props:{id:string}|undefined) => {
     }, [])
 
 
-    return {certification,fetchWeb3:fetchWeb3}
+    return {certification,fetchWeb3:fetchWeb3, insertWithTemplate, insertTemplate, insertWithoutTemplate}
 }
 
 
