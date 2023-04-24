@@ -30,21 +30,17 @@ const Layout = (props: props) => {
     return (
         <BrowserRouter>
             <ThemeProvider theme={toogleTheme ? theme : darkTheme}>
-                <AppBar style={{display: "flex", flexDirection: "row"}} position="sticky">
-                    <Typography variant={"h2"} align={"left"}>Dploma</Typography>
-                    <Typography align={"right"}><Switch checked={toogleTheme} onChange={handleChange}
+                <AppBar style={{display: "flex", flexDirection: "row", justifyContent: "space-between"}} position="sticky">
+                <Typography variant={"h2"} align={"left"} style={{ paddingLeft: "20px" }}>Dploma</Typography>
+                    <Typography align={"right"} style={{ padding: "20px" }}><Switch checked={toogleTheme} onChange={handleChange}
                                                         inputProps={{'aria-label': 'controlled'}}
-                                                        color="warning"/>theme</Typography>
+                                                        color="warning"/>Theme</Typography>
                 </AppBar>
                 <CssBaseline/>
                 <TabsLayout/>
-
-
                 <Typography>You are connected with{account} </Typography>
                 <Footer/>
             </ThemeProvider>
-
-
         </BrowserRouter>
     )
 }
