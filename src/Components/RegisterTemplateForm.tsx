@@ -1,6 +1,8 @@
 
 import {Button, FormControl, Container, TextField, Paper} from "@mui/material";
 import {ReactNode, useState} from "react";
+import {ITemplate} from "../type";
+import {useSmc} from "../hooks/useSmc";
 
 
 interface FormValues {
@@ -16,13 +18,11 @@ interface props {
 }
 const RegisterTemplateForm = (props: props) => {
     const {onSubmit} = props
-    const [formValues, setFormValues] = useState<FormValues>({
-        name: "",
-        templateTitle: "",
-        templateName: "",
-        date: new Date(),
-        otherValues: []
+    const [formValues, setFormValues] = useState<ITemplate>({
+        temp_title:"", temp_name:"", temp_date:"", temp_speciality: [],
     });
+
+    const {insertTemplate} = useSmc(undefined);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         if (name === "otherValues") {
@@ -40,7 +40,7 @@ const RegisterTemplateForm = (props: props) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-       // onSubmit(formValues);
+       insertTemplate(formValues);
     };
 
     return (
@@ -54,7 +54,7 @@ const RegisterTemplateForm = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.templateTitle}
+                        value={formValues.temp_title}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -64,7 +64,7 @@ const RegisterTemplateForm = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.templateName}
+                        value={formValues.temp_name}
                         onChange={handleInputChange}
                     />
                     <text>Template Date</text>
@@ -73,7 +73,7 @@ const RegisterTemplateForm = (props: props) => {
                         name="date"
                         type="date"
                         sx={{ mt: 1 }}
-                        value={formValues.date.toISOString().substring(0, 10)}
+                        value={formValues.temp_date/*.toISOString().substring(0, 10)*/}
                         onChange={handleDateChange}
                     />
                     <TextField
@@ -84,7 +84,7 @@ const RegisterTemplateForm = (props: props) => {
                         size="small"
                         multiline
                         sx={{ mt: 1 }}
-                        value={formValues.otherValues.toString()}
+                        value={formValues.temp_speciality/*.toString()*/}
                         onChange={handleInputChange}
                     />
                     <Button type="submit">Register</Button>

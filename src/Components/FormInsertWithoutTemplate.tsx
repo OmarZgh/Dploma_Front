@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import {Button, FormControl, Container, TextField} from "@mui/material";
+import {IDploma} from "../type";
+import {useSmc} from "../hooks/useSmc";
 
 
 interface FormValues {
@@ -21,18 +23,15 @@ interface props {
 }
 const FormWithoutTemplate = (props: props) => {
     const {onSubmit} = props
-    const [formValues, setFormValues] = useState<FormValues>({
-        certifiedFirstName: "",
-        certifiedLastName: "",
-        certifiedBirthDate: new Date(),
-        certifierName: "",
-        certifierPhysicalAdress: "",
-        certifiedPublicAdress: "",
-        templateTitle: "",
-        templateName: "",
-        tempDate: new Date(),
-        otherValues: []
+    const [formValues, setFormValues] = useState<IDploma>({
+        dip_addr_certified: "",
+        dip_addr_certifier: "",
+        dip_certified:{cfied_firstname : "",cfied_lastname: "",cfied_birthdate: ""},
+        dip_certifier:{cfier_name : "",cfier_adress: ""},
+        dip_template:{temp_title:"", temp_name:"", temp_date:"", temp_speciality: []},
+
     });
+    const {insertWithoutTemplate} = useSmc(undefined);
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
         if (name === "otherValues") {
@@ -55,7 +54,7 @@ const FormWithoutTemplate = (props: props) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        //onSubmit(formValues);
+        insertWithoutTemplate(formValues);
     };
 
     return (
@@ -69,7 +68,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedFirstName}
+                        value={formValues.dip_certifier?.cfier_name}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -79,7 +78,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedLastName}
+                        value={formValues.dip_certified?.cfied_lastname}
                         onChange={handleInputChange}
                     />
                     <text>Certified Birth Date</text>
@@ -88,7 +87,7 @@ const FormWithoutTemplate = (props: props) => {
                         name="certifiedBirthDate"
                         type="date"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedBirthDate.toISOString().substring(0, 10)}
+                        value={formValues.dip_certified?.cfied_birthdate/*.toISOString().substring(0, 10)*/}
                         onChange={handleBirthDateChange}
                     />
                     <TextField
@@ -98,7 +97,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifierName}
+                        value={formValues.dip_certifier?.cfier_name}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -108,7 +107,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifierPhysicalAdress}
+                        value={formValues.dip_certifier?.cfier_adress}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -118,7 +117,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.certifiedPublicAdress}
+                        value={formValues.dip_addr_certified}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -128,7 +127,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.templateTitle}
+                        value={formValues.dip_template?.temp_title}
                         onChange={handleInputChange}
                     />
                     <TextField
@@ -138,7 +137,7 @@ const FormWithoutTemplate = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.templateName}
+                        value={formValues.dip_template?.temp_name}
                         onChange={handleInputChange}
                     />
                     <text>Template Date</text>
@@ -147,7 +146,7 @@ const FormWithoutTemplate = (props: props) => {
                         name="tempDate"
                         type="date"
                         sx={{ mt: 1 }}
-                        value={formValues.tempDate.toISOString().substring(0, 10)}
+                        value={formValues.dip_template?.temp_date/*.toISOString().substring(0, 10)*/}
                         onChange={handleDateChange}
                     />
                     <TextField
@@ -158,7 +157,7 @@ const FormWithoutTemplate = (props: props) => {
                         size="small"
                         multiline
                         sx={{ mt: 1 }}
-                        value={formValues.otherValues.toString()}
+                        value={formValues.dip_template?.temp_speciality/*.toString()*/}
                         onChange={handleInputChange}
                     />
                     <Button type="submit">Register</Button>

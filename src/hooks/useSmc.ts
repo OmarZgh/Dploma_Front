@@ -12,10 +12,11 @@ const fetchWeb3 = async (id?:string|undefined) => {
 }
 
 const insertTemplate = (template : ITemplate)=>{
+    console.log("insert "+template)
     return null;
 }
-const insertWithoutTemplate = (template : IDploma)=>{
-
+const insertWithoutTemplate = (certif : IDploma)=>{
+    console.log("insert "+certif)
     return null;
 }
 const insertWithTemplate = (template : IDploma)=>{

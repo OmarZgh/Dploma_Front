@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Button, FormControl, Container, TextField} from "@mui/material";
 import {useSmc} from "../hooks/useSmc";
-import {ICertified, ICertifier, IDploma, ITemplate} from "../type";
+import {IDploma} from "../type";
 
 
 interface FormValues {
