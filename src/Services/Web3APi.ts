@@ -13,12 +13,12 @@ export const getDploma = async (id: string) => {
     const diploma:IDploma = await dploma.methods.getCertification(id).call();
     return diploma;
 }
-const addTemplate = async ( title: string, name: string, date: string, spec: string[]) => {
+export const addTemplate = async ( title: string, name: string, date: string, spec: string[]) => {
     const diploma:ITemplate = await dploma.methods.connect(sender).addTemplate(title, name, date, spec).call();
     return diploma;
 }
 
 const insertWithTemplate = async (id: string, templateId: string, name: string, date: string, spec: string[]) => {
-    const diploma:IDploma = await dploma.methods.connect(sender).insertWithTemplate(id, templateId, name, date, spec).call();
+    const diploma:IDploma = await dploma.methods.connect(sender).insertWithTemplate(templateId, name, date, spec).call();
     return diploma;
 }

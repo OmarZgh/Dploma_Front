@@ -1,4 +1,4 @@
-import {getDploma} from "../Services/Web3APi";
+import {addTemplate, getDploma} from "../Services/Web3APi";
 import {useEffect, useState} from "react";
 import {IDploma, ITemplate} from "../type";
 
@@ -12,16 +12,15 @@ const fetchWeb3 = async (id?:string|undefined) => {
 }
 
 const insertTemplate = (template : ITemplate)=>{
-    console.log("insert "+template)
-    return null;
+    const templateTest = addTemplate(template.temp_title!,template.temp_name!,template.temp_date!,template.temp_speciality!);
+    console.log("TEST "+templateTest)
 }
 const insertWithoutTemplate = (certif : IDploma)=>{
     console.log("insert "+certif)
     return null;
 }
 const insertWithTemplate = (template : IDploma)=>{
-    console.log("insert "+template)
-    return null;
+   return null;
 }
 const deleteCertif = (template : string)=>{
 
