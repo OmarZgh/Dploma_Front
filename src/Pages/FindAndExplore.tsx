@@ -42,15 +42,14 @@ const FindAndExplore = (props:any) => {
     }, [])
 
     return (
-        <FormLayout title={"find"} description={"search for a diploma"}>
-            <Box>
-                <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
-                <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
+        <FormLayout title={"Find"} description={"Insert the diploma you're looking for"}>
+            <Box display="flex" flexDirection="column" alignItems="center" maxWidth={1000} mx="auto" my={4} p={3} borderRadius={8} boxShadow={3}>
+                <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"} placeholder="Enter your hash..." style={{ marginBottom: "20px" }} />
+                <Button onClick={handleClick} fullWidth={true} variant={"contained"} color="primary" style={{ marginBottom: "20px" }}>Find</Button>
                 <DisplayDiploma diplomas={dplomas}/>
             </Box>
-        </FormLayout>        //Display the Dplomas
-
+        </FormLayout>
+        //Display the Dplomas
     )
-
 }
 export default FindAndExplore;

@@ -1,4 +1,4 @@
-import {Button, Container, Grid, Input} from "@mui/material";
+import {Button, Container, Grid, Input, TextField} from "@mui/material";
 import ButtonModal from "../Components/ButtonModal";
 import {useEffect, useState} from "react";
 import {useWeb3} from "../hooks/Hooks";
@@ -30,10 +30,9 @@ const Modification = () => {
     }
     useEffect(() => {}, [dploma])
     return (<Container>
-            <Box>
-                <Input fullWidth={true} onChange={event => setDplomaHash({id: event.target.value})}
-                       aria-label={"test"}></Input>
-                <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
+            <Box display="flex" flexDirection="column" alignItems="center" maxWidth={600} mx={"auto"} my={4} p={3} borderRadius={8} boxShadow={3}>
+                <Input fullWidth={true} onChange={event => setDplomaHash({id: event.target.value})} aria-label={"test"} placeholder="Enter your hash..." style={{ marginBottom: "20px" }} />
+                <Button onClick={handleClick} fullWidth variant="contained" color="primary">Find</Button>
             </Box>
             <Box sx={{mt: 5}}>
                 {connected && userRight !== "USER" ?
