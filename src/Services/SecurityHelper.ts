@@ -6,6 +6,7 @@ export function checkKeyIntegrity(accessKeyRef: string) {
     //TODO :Check type Character
     return true;
 }
+
 export type Rights = "CERTIFIER" | "CERTIFIED" | "USER" ;
 
 export function checkRightsIntegrity(dploma:IDploma|undefined,account:string) {

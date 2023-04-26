@@ -50,3 +50,4 @@ export const useWeb3 = () => {
         connect: handleConnect
     };
 };
+
