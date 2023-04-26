@@ -7,7 +7,6 @@ import {useWeb3} from "../hooks/Hooks";
 import {BrowserRouter, Routes, Route, useParams} from "react-router-dom";
 import FindAndExplore from "../Pages/FindAndExplore";
 
-
 interface props {
     theme: Theme;
     darkTheme: Theme;

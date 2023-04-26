@@ -5,13 +5,12 @@ import {Button, createTheme, Typography} from "@mui/material";
 import {BrowserRouter} from "react-router-dom";
 import {blue, green, grey, lightBlue, orange, red, yellow} from "@mui/material/colors";
 
-
 function App() {
     const theme = createTheme({
         palette: {
             mode: 'light',
             primary: {
-                main:red[500]
+                main: red[500]
             },
             secondary: {
                 light: red[500],
@@ -42,7 +41,6 @@ function App() {
             },
             action: {
                 active: green[200],
-
                 disabled: grey[700],
                 disabledBackground: grey[200],
                 hover: red[800],
@@ -61,27 +59,20 @@ function App() {
                 white: grey[200]
             },
             tonalOffset: 0.2,
-
-
-
         }
 
     });
+
     const darkTheme = createTheme({
-            palette: {
-                mode: "dark",
-            }
-        }
-    )
+        palette: {
+            mode: 'dark',
+        },
+    });
 
     return (
-
-            <div className="App">
-                <Layout theme={theme} darkTheme={darkTheme}/>
-            </div>
-
-
+        <div className="App">
+            <Layout theme={theme} darkTheme={darkTheme}/>
+        </div>
     );
 }
-
 export default App;
