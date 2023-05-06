@@ -23,7 +23,7 @@ const RegisterTemplateForm = (props: props) => {
     });
 
     const {insertTemplate} = useSmc(undefined);
-    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const { name, value } = event.target;
         if (name === "otherValues") {
             const values = value.split(",");
@@ -33,8 +33,8 @@ const RegisterTemplateForm = (props: props) => {
         }
     };
 
-    const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const date = new Date(event.target.value);
+    const handleDateChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+        const date = new Date(event.target.value).toDateString();
         setFormValues(prevValues => ({...prevValues, date}));
     };
 
@@ -54,8 +54,9 @@ const RegisterTemplateForm = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.temp_title}
-                        onChange={handleInputChange}
+
+                        onChange={event => handleInputChange(event)}
+
                     />
                     <TextField
                         required={true}
@@ -64,8 +65,8 @@ const RegisterTemplateForm = (props: props) => {
                         type="text"
                         size="small"
                         sx={{ mt: 1 }}
-                        value={formValues.temp_name}
-                        onChange={handleInputChange}
+
+                        onChange={event => handleInputChange(event)}
                     />
                     <text>Template Date</text>
                     <TextField
@@ -73,8 +74,8 @@ const RegisterTemplateForm = (props: props) => {
                         name="date"
                         type="date"
                         sx={{ mt: 1 }}
-                        value={formValues.temp_date/*.toISOString().substring(0, 10)*/}
-                        onChange={handleDateChange}
+
+                        onChange={event => handleDateChange(event)}
                     />
                     <TextField
                         required={true}
@@ -84,8 +85,8 @@ const RegisterTemplateForm = (props: props) => {
                         size="small"
                         multiline
                         sx={{ mt: 1 }}
-                        value={formValues.temp_speciality/*.toString()*/}
-                        onChange={handleInputChange}
+
+                        onChange={event => handleInputChange(event)}
                     />
                     <Button type="submit">Register</Button>
                 </FormControl>

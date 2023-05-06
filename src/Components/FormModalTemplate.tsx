@@ -20,12 +20,13 @@ interface Iprops {
     title?: string | undefined,
     description?: string | undefined,
     action?: string,
+    disabled?: boolean,
 
 }
 
 const FormModalTemplate = (props: Iprops) => {
 
-    const {children, open = false, setOpen, title, description, action} = props;
+    const {children, open = false, setOpen, title, description, action, disabled} = props;
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -49,9 +50,9 @@ const FormModalTemplate = (props: Iprops) => {
                         {description}
                     </Typography>
 
-                    <Button variant={"contained"} onClick={handleClickOpen}>
-                        {action}
-                    </Button>
+                    {disabled ?
+                        <Button disabled variant="contained" onClick={handleClickOpen}>{action}</Button> :
+                        <Button variant="contained" onClick={handleClickOpen}>{action}</Button>}
                 </CardContent>
             </Card>
             <Dialog

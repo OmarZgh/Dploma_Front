@@ -13,7 +13,7 @@ const fetchWeb3 = async (id?:string|undefined) => {
 
 const insertTemplate = (template : ITemplate)=>{
     const templateTest = addTemplate(template.temp_title!,template.temp_name!,template.temp_date!,template.temp_speciality!);
-    console.log("TEST "+templateTest)
+    console.log("TEST "+templateTest.then((res:ITemplate)=>{console.log(res)})  )
 }
 const insertWithoutTemplate = (certif : IDploma)=>{
     console.log("insert "+certif)

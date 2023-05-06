@@ -14,7 +14,8 @@ export const getDploma = async (id: string) => {
     return diploma;
 }
 export const addTemplate = async ( title: string, name: string, date: string, spec: string[]) => {
-    const diploma:ITemplate = await dploma.methods.connect(sender).addTemplate(title, name, date, spec).call();
+    const diploma = await dploma.methods.createTemplate(title, name, date, spec).call();
+    console.log(diploma)
     return diploma;
 }
 

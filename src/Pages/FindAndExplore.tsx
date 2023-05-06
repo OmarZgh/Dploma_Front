@@ -23,7 +23,8 @@ const FindAndExplore = (props:any) => {
         setHash({id: event.target.value})
     }
 
-    console.log(id)
+
+
     function handleClick() {
         let promise = fetchWeb3(hash.id);
         promise.then((res) => {
@@ -31,7 +32,6 @@ const FindAndExplore = (props:any) => {
         })
     }
 
-    console.log(id)
     useEffect(() => {
         if(id){
             let promise = fetchWeb3(id);
@@ -40,13 +40,13 @@ const FindAndExplore = (props:any) => {
             })
         }
     }, [])
-
     return (
         <FormLayout title={"find"} description={"search for a diploma"}>
             <Box>
                 <Input fullWidth={true} onChange={event => handleChange(event)} aria-label={"test"}></Input>
                 <Button onClick={handleClick} fullWidth={true} variant={"contained"}>Find</Button>
                 <DisplayDiploma diplomas={dplomas}/>
+
             </Box>
         </FormLayout>        //Display the Dplomas
 

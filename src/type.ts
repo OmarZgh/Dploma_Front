@@ -1,6 +1,6 @@
 export type IDploma= {
     dip_addr_certified?: string
-    dip_addr_certifier?: string
+    dip_addr_certifier?: string |undefined
     dip_certifier?: ICertifier
     dip_certified?: ICertified
     dip_template?: ITemplate, dip_hash?: string

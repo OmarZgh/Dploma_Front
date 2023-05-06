@@ -1,4 +1,5 @@
 import {IDploma} from "../type";
+import {useState} from "react";
 
 export function checkKeyIntegrity(accessKeyRef: string) {
     //TODO :check length
@@ -7,12 +8,21 @@ export function checkKeyIntegrity(accessKeyRef: string) {
     return true;
 }
 
-export type Rights = "CERTIFIER" | "CERTIFIED" | "USER" ;
+export type Rights = "CERTIFIER" | "CERTIFIED" | "USER" | "CERTIFIED&CERTIFIER" | "NONE"
 
-export function checkRightsIntegrity(dploma:IDploma|undefined,account:string) {
-    switch (account) {
-        case dploma?.dip_addr_certifier: return "CERTIFIER";
-        case dploma?.dip_addr_certified: return "CERTIFIED";
-        default: return "USER";
+export function checkRightsIntegrity(dploma: IDploma | undefined, account: string) {
+
+    if (dploma?.dip_addr_certified?.toLowerCase().includes(account) && dploma?.dip_addr_certifier?.toLowerCase().includes(account)) {
+        return "CERTIFIED&CERTIFIER"
+    } else if (dploma?.dip_addr_certifier?.toLowerCase().includes(account)) {
+        return "CERTIFIER"
+    } else if (dploma?.dip_addr_certified?.toLowerCase().includes(account)) {
+        return "CERTIFIED"
     }
+    if (dploma?.dip_addr_certified?.toLowerCase() === account && dploma?.dip_addr_certifier?.toLowerCase() === account) {
+        return "CERTIFIED&CERTIFIER"
+    } else {
+        return "USER"
+    }
+
 }

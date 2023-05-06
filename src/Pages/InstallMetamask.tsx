@@ -1,4 +1,4 @@
-import {Button, ButtonBaseActions, Typography} from "@mui/material";
+import {Button, ButtonBaseActions, Container, Typography} from "@mui/material";
 import {ReactElement} from "react";
 import Box from "@mui/material/Box";
 
@@ -13,12 +13,14 @@ const InstallMetamask = () => {
         window.open("https://metamask.io/download.html", "_blank")
     }
 
-    return (<div style={Style}>
+    return (< Container >
+
         <Box>
-            <Typography variant={"h4"} sx={{m:3}}>Afin d'accéder à toute les fonctionanlité de Dploma il vous faudra installé l'extension
+            <Typography variant={"h4"} sx={{m:3}}>In order to access all of Dploma's features you will need to install the
                 Metamask</Typography>
+            <Button color={"primary"} variant={"outlined"} onClick={event => handleClick(event)}>Install Metamask</Button>
         </Box>
-        <Button color={"primary"} sx={{width:"60vh"}} variant={"outlined"} onClick={event => handleClick(event)}>Install Metamask</Button>
-    </div>)
+
+    </Container>)
 }
 export default InstallMetamask

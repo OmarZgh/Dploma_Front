@@ -1,5 +1,5 @@
 import {QRCodeCanvas, QRCodeSVG} from "qrcode.react";
-import {Button} from "@mui/material";
+import {Button, Container} from "@mui/material";
 import Box from "@mui/material/Box";
 import {Env} from "../Env";
 import DOMAIN = Env.DOMAIN;
@@ -27,14 +27,16 @@ const QRcode = (props: IProps) => {
     };
 
     return (
-        <Box display={"flex"} flexDirection={"column"}>
-            <QRCodeCanvas
-                id="qrcode"
-                value={DOMAIN+"?id=" + hash}
-                size={256}>
-            </QRCodeCanvas>
-            <Button onClick={downloadQR}> Download QR </Button>
-        </Box>
+        <Container sx={{alignItems:"center"}}>
+            <Box display={"flex"} flexDirection={"column"}>
+                <QRCodeCanvas
+                    id="qrcode"
+                    value={DOMAIN + "?id=" + hash}
+                    size={256}>
+                </QRCodeCanvas>
+                <Button sx={{m:1}} variant={"contained"} onClick={downloadQR}> Download QR </Button>
+            </Box>
+        </Container>
     )
 }
 export default QRcode
