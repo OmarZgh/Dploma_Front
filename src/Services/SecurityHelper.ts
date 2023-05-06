@@ -19,9 +19,7 @@ export function checkRightsIntegrity(dploma: IDploma | undefined, account: strin
     } else if (dploma?.dip_addr_certified?.toLowerCase().includes(account)) {
         return "CERTIFIED"
     }
-    if (dploma?.dip_addr_certified?.toLowerCase() === account && dploma?.dip_addr_certifier?.toLowerCase() === account) {
-        return "CERTIFIED&CERTIFIER"
-    } else {
+    else {
         return "USER"
     }
 
