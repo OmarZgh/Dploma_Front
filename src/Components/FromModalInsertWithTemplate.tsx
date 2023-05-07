@@ -10,7 +10,7 @@ import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
-import RegisterTemplateForm from "./RegisterTemplateForm";
+import FormTemplate from "./FormTemplate";
 import DialogContext from "@mui/material/Dialog/DialogContext";
 import FormInsertWithTemplate from "./FormInsertWithTemplate";
 

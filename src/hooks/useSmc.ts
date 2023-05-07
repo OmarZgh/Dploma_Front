@@ -15,6 +15,8 @@ const insertTemplate = (template : ITemplate)=>{
     const templateTest = addTemplate(template.temp_title!,template.temp_name!,template.temp_date!,template.temp_speciality!);
     console.log("TEST "+templateTest.then((res:ITemplate)=>{console.log(res)})  )
 }
+
+const updateTemplate = (template : ITemplate,hash:string)=>{}
 const insertWithoutTemplate = (certif : IDploma)=>{
     console.log("insert "+certif)
     return null;
@@ -48,7 +50,7 @@ export const useSmc = (props:{id:string}|undefined) => {
     }, [])
 
 
-    return {certification,fetchWeb3:fetchWeb3, insertWithTemplate, insertTemplate, insertWithoutTemplate}
+    return {certification,fetchWeb3:fetchWeb3, insertWithTemplate, insertTemplate, insertWithoutTemplate,updateTemplate}
 }
 
 

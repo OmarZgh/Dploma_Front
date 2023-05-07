@@ -1,6 +1,5 @@
-
 import {Button, FormControl, Container, TextField, Paper} from "@mui/material";
-import {ReactNode, useState} from "react";
+import {useState} from "react";
 import {ITemplate} from "../type";
 import {useSmc} from "../hooks/useSmc";
 
@@ -11,20 +10,24 @@ interface FormValues {
     templateName: string;
     date: Date;
     otherValues: string[];
+
+
 }
 
 interface props {
     onSubmit?: (values: FormValues) => void;
+    hash?: string;
 }
-const RegisterTemplateForm = (props: props) => {
-    const {onSubmit} = props
+
+const FormTemplate = (props: props) => {
+    const {onSubmit, hash} = props
     const [formValues, setFormValues] = useState<ITemplate>({
-        temp_title:"", temp_name:"", temp_date:"", temp_speciality: [],
+        temp_title: "", temp_name: "", temp_date: "", temp_speciality: [],
     });
 
-    const {insertTemplate} = useSmc(undefined);
+    const {insertTemplate, updateTemplate} = useSmc(undefined);
     const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const { name, value } = event.target;
+        const {name, value} = event.target;
         if (name === "otherValues") {
             const values = value.split(",");
             setFormValues(prevValues => ({...prevValues, [name]: values}));
@@ -40,20 +43,21 @@ const RegisterTemplateForm = (props: props) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-       insertTemplate(formValues);
+        hash !== undefined ? updateTemplate(formValues, hash) :
+            insertTemplate(formValues);
     };
 
     return (
-        <Container sx={{ display: 'flex', justifyContent: 'center',  width: '100%' }}>
+        <Container sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
             <form onSubmit={handleSubmit}>
-                <FormControl sx={{ width: '100%' }}>
+                <FormControl sx={{width: '100%'}}>
                     <TextField
                         required={true}
                         name="templateTitle"
                         placeholder="Template title"
                         type="text"
                         size="small"
-                        sx={{ mt: 1 }}
+                        sx={{mt: 1}}
 
                         onChange={event => handleInputChange(event)}
 
@@ -64,7 +68,7 @@ const RegisterTemplateForm = (props: props) => {
                         placeholder="Template name"
                         type="text"
                         size="small"
-                        sx={{ mt: 1 }}
+                        sx={{mt: 1}}
 
                         onChange={event => handleInputChange(event)}
                     />
@@ -73,7 +77,7 @@ const RegisterTemplateForm = (props: props) => {
                         required={true}
                         name="date"
                         type="date"
-                        sx={{ mt: 1 }}
+                        sx={{mt: 1}}
 
                         onChange={event => handleDateChange(event)}
                     />
@@ -84,7 +88,7 @@ const RegisterTemplateForm = (props: props) => {
                         type="text"
                         size="small"
                         multiline
-                        sx={{ mt: 1 }}
+                        sx={{mt: 1}}
 
                         onChange={event => handleInputChange(event)}
                     />
@@ -94,4 +98,4 @@ const RegisterTemplateForm = (props: props) => {
         </Container>
     );
 };
-export default RegisterTemplateForm;
+export default FormTemplate;

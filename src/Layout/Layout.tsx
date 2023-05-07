@@ -40,7 +40,7 @@ const Layout = (props: props) => {
                 <TabsLayout/>
 
 
-                {connected?<Typography>You are connected with{account} </Typography>:<Typography>You are not connected</Typography>}
+                {connected?<Typography>You are connected with the account {account} </Typography>:<Typography>You are not connected to metamask</Typography>}
                 <Footer/>
             </ThemeProvider>
 

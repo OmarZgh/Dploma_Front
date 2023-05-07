@@ -21,6 +21,7 @@ const FindAndExplore = (props:any) => {
     const id = queryParams.get('id');
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         setHash({id: event.target.value})
+        id?.startsWith("0x") ? setHash({id: event.target.value}) : setHash({id: "0x" + event.target.value})
     }
 
 

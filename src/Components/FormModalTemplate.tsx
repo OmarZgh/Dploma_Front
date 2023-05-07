@@ -1,17 +1,13 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Paper} from "@mui/material";
+import {Dialog, DialogActions, DialogContent,Divider} from "@mui/material";
 import {Dispatch, SetStateAction} from "react";
-import ButtonModal from "./ButtonModal";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
-import RegisterTemplateForm from "./RegisterTemplateForm";
-import DialogContext from "@mui/material/Dialog/DialogContext";
+import FormTemplate from "./FormTemplate";
+
 
 interface Iprops {
     children?: React.ReactNode,
@@ -64,7 +60,7 @@ const FormModalTemplate = (props: Iprops) => {
 
             >
                 <DialogContent> <FormLayout title={title}
-                                            description={description}></FormLayout><RegisterTemplateForm></RegisterTemplateForm>
+                                            description={description}></FormLayout><FormTemplate></FormTemplate>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
