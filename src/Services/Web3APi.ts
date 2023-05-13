@@ -4,8 +4,8 @@ import abi from "../ABI/ABI.json";
 import {IDploma, ITemplate} from "../type";
 import {useSmc} from "../hooks/useSmc";
 
-const web3 = new Web3("https://eth-goerli.g.alchemy.com/v2/GoPk5qRGiHAo9EUXOvUquXJFW-MsRg5i");
-const contractAddress="0xf87E2fD2214F291eE6098A091BA42DC01c002d7A"
+const web3 = new Web3((window as any).ethereum);
+const contractAddress=process.env.REACT_APP_CONTRACT_ADDRESS;
 const dploma = new web3.eth.Contract(abi as unknown as AbiItem[], contractAddress);
 const sender=(window as any).ethereum.request({method: "eth_requestAccounts"}).then((res:any)=>{console.log(res)}).catch((err:any)=>{console.log(err)})
 
