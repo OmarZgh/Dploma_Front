@@ -1,4 +1,4 @@
-import {addTemplate, getDploma, insertWithoutTemplate,} from "../Services/Web3APi";
+import {addTemplate, getDploma, insertWithoutTemplate, insertWithTemplate,} from "../Services/Web3APi";
 import {useEffect, useState} from "react";
 import {IDploma, ITemplate} from "../type";
 
@@ -30,8 +30,14 @@ export const createWithoutTemplate = (certifiedFirstName: string,
     return insertWithoutTemplate(certifiedFirstName, certifiedLastName, certifiedBirthDate, certifierName, certifierPhysicalAdress, certifiedPublicAdress, templateTitle, templateName, tempDate, otherValues)
 
 }
-const insertWithTemplate = (template: IDploma) => {
-    return null;
+export const createWithTemplate = (cfiedfirstname: string,
+                            cfiedLastname: string,
+                            cfiedBirthdate: string,
+                            cfierName: string,
+                            cfierPhysicalAdress: string,
+                            hashTemplate: string,
+                            certifiedPubAdress: string,) => {
+    return insertWithTemplate(cfiedfirstname, cfiedLastname, cfiedBirthdate, cfierName, cfierPhysicalAdress, hashTemplate, certifiedPubAdress)
 }
 const deleteCertif = (template: string) => {
 

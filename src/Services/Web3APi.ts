@@ -1,7 +1,7 @@
 import Web3 from "web3";
 import {AbiItem} from 'web3-utils'
 import abi from "../ABI/ABI.json";
-import {IDploma, ITemplate} from "../type";
+import {IDploma} from "../type";
 
 const web3 = new Web3((window as any).ethereum)
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
@@ -14,41 +14,39 @@ export const getDploma = async (id: string) => {
 }
 export const addTemplate = async (title: string, name: string, date: string, spec: string[]) => {
     const sender = await web3.eth.getAccounts()
-    const diploma = await dploma.methods.createTemplate(title, name, date, spec).send({from: sender[0]});
-    return diploma;
+    return await dploma.methods.createTemplate(title, name, date, spec).send({from: sender[0]});
 }
 
-const insertWithTemplate = async (cfiedfirstname: string,
-                                  cfiedLastname: string,
-                                  cfiedBirthdate: string,
-                                  cfierName: string,
-                                  cfierPhysicalAdress: string,
-                                  hashTemplate: string,
-                                  certifiedPubAdress: string,
+export const insertWithTemplate = async (cfiedfirstname: string,
+                                         cfiedLastname: string,
+                                         cfiedBirthdate: string,
+                                         cfierName: string,
+                                         cfierPhysicalAdress: string,
+                                         hashTemplate: string,
+                                         certifiedPubAdress: string,
 ) => {
     const sender = await web3.eth.getAccounts()
-    const diploma: IDploma = await dploma.methods.insertWithTemplate(cfiedfirstname,
+    return await dploma.methods.insertWithTemplate(cfiedfirstname,
         cfiedLastname,
         cfiedBirthdate,
         cfierName,
         cfierPhysicalAdress,
         hashTemplate,
         certifiedPubAdress).send({from: sender[0]});
-    return diploma;
 }
 
 export const insertWithoutTemplate = async (cfiedfirstname: string,
-                                     cfiedLastname: string,
-                                     cfiedBirthdate: string,
-                                     cfierName: string,
-                                     cfierPhysicalAdress: string,
-                                     certifiedPubAdress: string,
-                                     temptitle: string,
-                                     tempName: string,
-                                     tempDate: string,
-                                     tempSpecs: string[]) => {
+                                            cfiedLastname: string,
+                                            cfiedBirthdate: string,
+                                            cfierName: string,
+                                            cfierPhysicalAdress: string,
+                                            certifiedPubAdress: string,
+                                            temptitle: string,
+                                            tempName: string,
+                                            tempDate: string,
+                                            tempSpecs: string[]) => {
     const sender = await web3.eth.getAccounts()
-    const diploma = await dploma.methods.insertWithoutTemplate(
+    return await dploma.methods.insertWithoutTemplate(
         cfiedfirstname,
         cfiedLastname,
         cfiedBirthdate,
@@ -59,7 +57,6 @@ export const insertWithoutTemplate = async (cfiedfirstname: string,
         tempName,
         tempDate,
         tempSpecs).send({from: sender[0]});
-    return diploma;
 }
 
 const updateTemplate = async (hashTemplate: string,

@@ -89,7 +89,6 @@ const FormTemplate = (props: props) => {
                                 type="text"
                                 size="small"
                                 sx={{mt: 1}}
-
                                 onChange={event => handleInputChange(event)}
 
                             />
