@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Paper} from "@mui/material";
-import {Dispatch, SetStateAction} from "react";
+import {Dispatch, SetStateAction, useState} from "react";
 import ButtonModal from "./ButtonModal";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
@@ -14,6 +14,7 @@ import FormTemplate from "./FormTemplate";
 import DialogContext from "@mui/material/Dialog/DialogContext";
 import FormInsertWithTemplate from "./FormInsertWithTemplate";
 import FormWithoutTemplate from "./FormInsertWithoutTemplate";
+import {RequestQueryStatus} from "../type";
 
 interface Iprops {
     children?: React.ReactNode,
@@ -26,7 +27,9 @@ interface Iprops {
 }
 
 const FormModalInsertWithTemlate= (props: Iprops) => {
-
+    const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
+    const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
+    const [response, setResponse] = useState<string>("")
     const {children, open = false, setOpen, title, description, action} = props;
     const handleClickOpen = () => {
         setOpen(true);
@@ -35,6 +38,8 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+
 
     return (
         <div>

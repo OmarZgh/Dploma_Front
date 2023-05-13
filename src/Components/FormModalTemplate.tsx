@@ -31,6 +31,7 @@ const FormModalTemplate = (props: Iprops) => {
         setOpen(false);
     };
 
+
     return (
         <div>
 

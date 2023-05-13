@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import {Button, FormControl, Container, TextField} from "@mui/material";
 import {useSmc} from "../hooks/useSmc";
-import {IDploma} from "../type";
+import {IDploma, RequestQueryStatus} from "../type";
 
 
 interface FormValues {
@@ -19,6 +19,9 @@ interface props {
 }
 const FormInsertWithTemplate = (props: props) => {
     const {onSubmit} = props
+    const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
+    const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
+    const [response, setResponse] = useState<string>("")
     const [formValues, setFormValues] = useState<IDploma>({
         dip_addr_certified: "",
         dip_addr_certifier: "",

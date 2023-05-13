@@ -1,9 +1,9 @@
-import {Button, Container, FormControl, LinearProgress, Paper, TextField, Typography} from "@mui/material";
+import {Button, Container, FormControl, IconButton, LinearProgress, Paper, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {ITemplate, RequestQueryStatus} from "../type";
 import {useSmc} from "../hooks/useSmc";
 import LinearBuffer from "./LinearBuffer";
-
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface FormValues {
     name: string;
@@ -57,15 +57,26 @@ const FormTemplate = (props: props) => {
             })
         };
 
-        useEffect(() => {renderContent()}, [requestStatus])
+        const handleCopy = () => {
+            navigator.clipboard.writeText(response)
+        }
+
+        useEffect(() => {
+            renderContent()
+        }, [requestStatus])
         const renderContent = () => {
             switch (requestStatus) {
                 case LOADING:
-                    return <div style={{display:"flex"}}>
+                    return <div style={{display: "flex"}}>
                         <LinearBuffer/>
                     </div>;
                 case SUCCESS:
-                    return <div><Paper variant={"outlined"}><Typography variant={"h5"} >Hash Template</Typography><Typography noWrap={true}>{response}</Typography></Paper></div>;
+                    return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Hash Template</Typography><Typography
+                        noWrap={true}>{response}</Typography>
+                        <IconButton  >
+                            <ContentCopyIcon color="secondary" onClick={handleCopy}/>
+                        </IconButton>
+                    </Paper></div>;
                 case ERROR:
                     return <div>Error</div>;
                 default:
@@ -121,8 +132,8 @@ const FormTemplate = (props: props) => {
         }
 
         return (
-            <Container sx={{ justifyContent: 'center', width: '100%',p:3}}>
-                <div style={{padding:5}}>
+            <Container sx={{justifyContent: 'center', width: '100%', p: 3}}>
+                <div style={{padding: 5}}>
                     {renderContent()}</div>
             </Container>
         );

@@ -37,7 +37,7 @@ const insertWithTemplate = async (cfiedfirstname: string,
     return diploma;
 }
 
-const insertWithoutTemplate = async (cfiedfirstname: string,
+export const insertWithoutTemplate = async (cfiedfirstname: string,
                                      cfiedLastname: string,
                                      cfiedBirthdate: string,
                                      cfierName: string,
@@ -48,7 +48,7 @@ const insertWithoutTemplate = async (cfiedfirstname: string,
                                      tempDate: string,
                                      tempSpecs: string[]) => {
     const sender = await web3.eth.getAccounts()
-    const diploma: IDploma = await dploma.methods.insertWithoutTemplate(
+    const diploma = await dploma.methods.insertWithoutTemplate(
         cfiedfirstname,
         cfiedLastname,
         cfiedBirthdate,
