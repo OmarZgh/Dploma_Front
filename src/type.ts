@@ -25,3 +25,10 @@ export interface ITemplate {
     temp_date?: string
     temp_speciality?: string[]
 }
+
+export  enum RequestQueryStatus  {
+    LOADING,
+    SUCCESS,
+    ERROR,
+    NONE,
+}

@@ -63,7 +63,7 @@ const FormModalTemplate = (props: Iprops) => {
                                             description={description}></FormLayout><FormTemplate></FormTemplate>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         </div>)

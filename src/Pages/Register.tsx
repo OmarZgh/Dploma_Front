@@ -31,30 +31,25 @@ const Register = () => {
 
     return (<Container fixed={true}>
 
-            {connected ? <Grid container spacing={2}>
+            {connected ? <Grid container spacing={2} sx={{pt:6}}>
                 <Grid item xs={12} lg={4}>
                     <FormModalTemplate open={open} setOpen={setOpen} description={""} title={"Register a generic template"} action={"Certify"}/>
-
-
-
                 </Grid>
                 <Grid item xs={12} lg={4}>
                     <FormModalInsertWithTemlate open={openwithTemplate} setOpen={setOpenWithTemplate} description={""} title={"Register with template" }
                                        action={"Certify"}>
-
                     </FormModalInsertWithTemlate>
                 </Grid>
                 <Grid item xs={12} lg={4}>
                     <FormModalInsertWithouTemplate open={openWithouTemplate} setOpen={setOpenWithoutTemplate} description={""} title={"Register without template "} action={"certify"}>
-
                     </FormModalInsertWithouTemplate>
                 </Grid>
-                <Grid item xs={12} lg={4}>
-                    <Paper>
-                    <FormLayout title={"Test QR Code"} description={"Scan and download QR to fetch the certification"}>
-                        <QRcode hash={"0x6DFB986F6E058B90F56B2B44834203E3045C85EEAC8D03D0A4345CF89093444D"}/></FormLayout>
-                    </Paper>
-                </Grid>
+                {/*<Grid item xs={12} lg={4}>*/}
+                {/*    <Paper>*/}
+                {/*    <FormLayout title={"Test QR Code"} description={"Scan and download QR to fetch the certification"}>*/}
+                {/*        <QRcode hash={"0x6DFB986F6E058B90F56B2B44834203E3045C85EEAC8D03D0A4345CF89093444D"}/></FormLayout>*/}
+                {/*    </Paper>*/}
+                {/*</Grid>*/}
 
             </Grid> : <Grid>
                 <Paper sx={{p: 2, m: 2, display: "flex", flexDirection: "column", alignItems: "center"}}

@@ -1,7 +1,8 @@
-import {Button, FormControl, Container, TextField, Paper} from "@mui/material";
-import {useState} from "react";
-import {ITemplate} from "../type";
+import {Button, Container, FormControl, LinearProgress, Paper, TextField, Typography} from "@mui/material";
+import {useEffect, useState} from "react";
+import {ITemplate, RequestQueryStatus} from "../type";
 import {useSmc} from "../hooks/useSmc";
+import LinearBuffer from "./LinearBuffer";
 
 
 interface FormValues {
@@ -20,82 +21,111 @@ interface props {
 }
 
 const FormTemplate = (props: props) => {
-    const {onSubmit, hash} = props
-    const [formValues, setFormValues] = useState<ITemplate>({
-        temp_title: "", temp_name: "", temp_date: "", temp_speciality: [],
-    });
+        const {onSubmit, hash} = props
+        const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
+        const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
+        const [response, setResponse] = useState<string>("")
+        const [formValues, setFormValues] = useState<ITemplate>({
+            temp_title: "", temp_name: "", temp_date: "", temp_speciality: [],
+        });
 
-    const {insertTemplate, updateTemplate} = useSmc(undefined);
-    const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const {name, value} = event.target;
-        if (name === "temp_speciality") {
-            const values = value.split(",");
-            setFormValues(prevValues => ({...prevValues, [name]: values}));
-        } else {
-            setFormValues(prevValues => ({...prevValues, [name]: value}));
+        const {insertTemplate, updateTemplate} = useSmc(undefined);
+        const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+            const {name, value} = event.target;
+            if (name === "temp_speciality") {
+                const values = value.split(",");
+                setFormValues(prevValues => ({...prevValues, [name]: values}));
+            } else {
+                setFormValues(prevValues => ({...prevValues, [name]: value}));
+            }
+        };
+
+        const handleDateChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
+            const date = new Date(event.target.value).toDateString();
+            setFormValues(prevValues => ({...prevValues, date}));
+        };
+
+        const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+            event.preventDefault();
+            setRequestStatus(LOADING)
+            insertTemplate(formValues).then((res) => {
+                setRequestStatus(SUCCESS);
+
+                setResponse(res.events.evtTemplate.returnValues[1])
+            }).catch((err) => {
+                setRequestStatus(ERROR);
+            })
+        };
+
+        useEffect(() => {renderContent()}, [requestStatus])
+        const renderContent = () => {
+            switch (requestStatus) {
+                case LOADING:
+                    return <div style={{display:"flex"}}>
+                        <LinearBuffer/>
+                    </div>;
+                case SUCCESS:
+                    return <div><Paper variant={"outlined"}><Typography variant={"h5"} >Hash Template</Typography><Typography noWrap={true}>{response}</Typography></Paper></div>;
+                case ERROR:
+                    return <div>Error</div>;
+                default:
+                    return (<form onSubmit={handleSubmit}>
+                        <FormControl sx={{width: '100%'}}>
+                            <TextField
+                                required={true}
+                                name="temp_title"
+                                placeholder="Template title"
+                                type="text"
+                                size="small"
+                                sx={{mt: 1}}
+
+                                onChange={event => handleInputChange(event)}
+
+                            />
+                            <TextField
+                                required={true}
+                                name="temp_name"
+                                placeholder="Template name"
+                                type="text"
+                                size="small"
+                                sx={{mt: 1}}
+
+                                onChange={event => handleInputChange(event)}
+                            />
+                            <text>Template Date</text>
+                            <TextField
+                                required={true}
+                                name="temp_date"
+                                type="date"
+                                sx={{mt: 1}}
+
+                                onChange={event => handleDateChange(event)}
+                            />
+                            <TextField
+                                required={true}
+                                name="temp_speciality"
+                                placeholder="Specs separated by comma ','"
+                                type="text"
+                                size="small"
+                                multiline
+                                sx={{mt: 1}}
+
+                                onChange={event => handleInputChange(event)}
+                            />
+                            <Button type="submit">Register</Button>
+                        </FormControl>
+                    </form>)
+
+            }
+
         }
-    };
 
-    const handleDateChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-        const date = new Date(event.target.value).toDateString();
-        setFormValues(prevValues => ({...prevValues, date}));
-    };
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        console.log(formValues);
-        insertTemplate(formValues).then((res) => {console.log(res)})
-    };
-
-    return (
-        <Container sx={{display: 'flex', justifyContent: 'center', width: '100%'}}>
-            <form onSubmit={handleSubmit}>
-                <FormControl sx={{width: '100%'}}>
-                    <TextField
-                        required={true}
-                        name="temp_title"
-                        placeholder="Template title"
-                        type="text"
-                        size="small"
-                        sx={{mt: 1}}
-
-                        onChange={event => handleInputChange(event)}
-
-                    />
-                    <TextField
-                        required={true}
-                        name="temp_name"
-                        placeholder="Template name"
-                        type="text"
-                        size="small"
-                        sx={{mt: 1}}
-
-                        onChange={event => handleInputChange(event)}
-                    />
-                    <text>Template Date</text>
-                    <TextField
-                        required={true}
-                        name="temp_date"
-                        type="date"
-                        sx={{mt: 1}}
-
-                        onChange={event => handleDateChange(event)}
-                    />
-                    <TextField
-                        required={true}
-                        name="temp_speciality"
-                        placeholder="Specs separated by comma ','"
-                        type="text"
-                        size="small"
-                        multiline
-                        sx={{mt: 1}}
-
-                        onChange={event => handleInputChange(event)}
-                    />
-                    <Button type="submit">Register</Button>
-                </FormControl>
-            </form>
-        </Container>
-    );
-};
+        return (
+            <Container sx={{ justifyContent: 'center', width: '100%',p:3}}>
+                <div style={{padding:5}}>
+                    {renderContent()}</div>
+            </Container>
+        );
+    }
+;
 export default FormTemplate;
