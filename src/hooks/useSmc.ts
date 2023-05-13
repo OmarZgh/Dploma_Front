@@ -11,9 +11,9 @@ const fetchWeb3 = async (id?:string|undefined) => {
     }):undefined
 }
 
-const insertTemplate = (template : ITemplate)=>{
-    const templateTest = addTemplate(template.temp_title!,template.temp_name!,template.temp_date!,template.temp_speciality!);
-    console.log("TEST "+templateTest.then((res:ITemplate)=>{console.log(res)})  )
+const insertTemplate = async (template : ITemplate)=>{
+    return addTemplate(template.temp_title!,template.temp_name!,template.temp_date!,template.temp_speciality!)
+
 }
 
 const updateTemplate = (template : ITemplate,hash:string)=>{}

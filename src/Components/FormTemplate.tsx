@@ -28,7 +28,7 @@ const FormTemplate = (props: props) => {
     const {insertTemplate, updateTemplate} = useSmc(undefined);
     const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
         const {name, value} = event.target;
-        if (name === "otherValues") {
+        if (name === "temp_speciality") {
             const values = value.split(",");
             setFormValues(prevValues => ({...prevValues, [name]: values}));
         } else {
@@ -43,8 +43,8 @@ const FormTemplate = (props: props) => {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        hash !== undefined ? updateTemplate(formValues, hash) :
-            insertTemplate(formValues);
+        console.log(formValues);
+        insertTemplate(formValues).then((res) => {console.log(res)})
     };
 
     return (
@@ -53,7 +53,7 @@ const FormTemplate = (props: props) => {
                 <FormControl sx={{width: '100%'}}>
                     <TextField
                         required={true}
-                        name="templateTitle"
+                        name="temp_title"
                         placeholder="Template title"
                         type="text"
                         size="small"
@@ -64,7 +64,7 @@ const FormTemplate = (props: props) => {
                     />
                     <TextField
                         required={true}
-                        name="templateName"
+                        name="temp_name"
                         placeholder="Template name"
                         type="text"
                         size="small"
@@ -75,7 +75,7 @@ const FormTemplate = (props: props) => {
                     <text>Template Date</text>
                     <TextField
                         required={true}
-                        name="date"
+                        name="temp_date"
                         type="date"
                         sx={{mt: 1}}
 
@@ -83,7 +83,7 @@ const FormTemplate = (props: props) => {
                     />
                     <TextField
                         required={true}
-                        name="otherValues"
+                        name="temp_speciality"
                         placeholder="Specs separated by comma ','"
                         type="text"
                         size="small"
