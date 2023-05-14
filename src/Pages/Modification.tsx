@@ -9,6 +9,7 @@ import {getDploma} from "../Services/Web3APi";
 import FormModalDelete from "../Components/FormModalDelete";
 import FormModalModification from "../Components/FormModalModification";
 import FormModalVisbility from "../Components/FormModalVisbility";
+import {ITemplate} from "../type";
 
 
 const Modification = () => {
@@ -30,28 +31,40 @@ const Modification = () => {
         }
 
     }
+
     const renderModal = () => {
         switch (userRight) {
             case "NONE":
-                return <Box sx={{m: 3}}><Typography variant={"h3"}>Please enter the registration reference in order to modify it</Typography></Box>
+                return <Box sx={{m: 3}}><Typography variant={"h3"}>Please enter the registration reference in order to
+                    modify it</Typography></Box>
             case "USER":
-                return <Box sx={{m: 3}}><Typography variant={"h3"}>You are not allowed to interact with this certification
+                return <Box sx={{m: 3}}><Typography variant={"h3"}>You are not allowed to interact with this
+                    certification
                     please verify the provided
                     informations</Typography></Box>
             case "CERTIFIER":
-                return <FormModalTemplate open={openModification} setOpen={setOpenModification} description={""}
-                                          title={"Modify Certification"} action={"Certify"}/>
+                return (<> <FormModalModification open={openModification} setOpen={setOpenModification}
+                                                  hash={dplomaHash.id}
+                                                  title={"Modify Certification"}
+                                                  description={""} action={"modify"}/>
+                        <FormModalDelete open={openDelete} setOpen={setOpenDelete} hash={dplomaHash.id}
+                                         description={"Please notice that this action is irreversible" +
+                                             " and will delete the certification from the blockchain ,Consider modifying it instead. Could you please confirm ?"}
+                                         title={"Delete certification"} action={"Certify"}/></>
+                )
             case "CERTIFIED":
-                return <FormModalDelete open={openDelete} setOpen={setOpenDelete}
-                                        description={"Please notice that this action is irreversible" +
-                                            " and will delete the certification from the blockchain ,Consider modifying it instead. Could you please confirm ?"}
-                                        title={"Delete certification"} action={"Certify"}/>
+                return <FormModalVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
+                                           hash={dplomaHash.id}
+                                           title={"Change Visibility"} action={"Vibility"}/>
             case "CERTIFIED&CERTIFIER":
-                return (<> <FormModalModification open={openModification} setOpen={setOpenModification} title={"Modify Certification"}
+                return (<> <FormModalModification open={openModification} setOpen={setOpenModification}
+                                                  hash={dplomaHash.id}
+                                                  title={"Modify Certification"}
                                                   description={""} action={"modify"}/>
                         <FormModalVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
+                                            hash={dplomaHash.id}
                                             title={"Change Visibility"} action={"Vibility"}/>
-                        <FormModalDelete open={openDelete} setOpen={setOpenDelete} description={""}
+                        <FormModalDelete open={openDelete} setOpen={setOpenDelete} description={""} hash={dplomaHash.id}
                                          title={"Delete certification"} action={"Delete"}/></>
                 )
         }

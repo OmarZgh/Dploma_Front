@@ -1,7 +1,7 @@
 import {Button, Container, FormControl, IconButton, LinearProgress, Paper, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
 import {ITemplate, RequestQueryStatus} from "../type";
-import {useSmc} from "../hooks/useSmc";
+import {insertTemplate, useSmc} from "../hooks/useSmc";
 import LinearBuffer from "./LinearBuffer";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
@@ -9,7 +9,7 @@ interface FormValues {
     name: string;
     templateTitle: string;
     templateName: string;
-    date: Date;
+    temp_date: string;
     otherValues: string[];
 
 
@@ -18,10 +18,14 @@ interface FormValues {
 interface props {
     onSubmit?: (values: FormValues) => void;
     hash?: string;
+
+    setTemplate?: (values: ITemplate) => void;
+    template?: ITemplate;
+    disabled?: boolean;
 }
 
 const FormTemplate = (props: props) => {
-        const {onSubmit, hash} = props
+        const {disabled,setTemplate} = props
         const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
         const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
         const [response, setResponse] = useState<string>("")
@@ -29,7 +33,7 @@ const FormTemplate = (props: props) => {
             temp_title: "", temp_name: "", temp_date: "", temp_speciality: [],
         });
 
-        const {insertTemplate, updateTemplate} = useSmc(undefined);
+
         const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
             const {name, value} = event.target;
             if (name === "temp_speciality") {
@@ -38,13 +42,23 @@ const FormTemplate = (props: props) => {
             } else {
                 setFormValues(prevValues => ({...prevValues, [name]: value}));
             }
+            if(setTemplate) {
+                setTemplate(formValues);
+            }
         };
 
         const handleDateChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
             const date = new Date(event.target.value).toDateString();
             setFormValues(prevValues => ({...prevValues, date}));
-        };
+            if (setTemplate) {
 
+            }
+        };
+        useEffect(() => {
+            if (setTemplate) {
+                setTemplate(formValues)
+            }
+        }, [formValues])
         const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
             event.preventDefault();
             setRequestStatus(LOADING)
@@ -73,7 +87,7 @@ const FormTemplate = (props: props) => {
                 case SUCCESS:
                     return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Hash Template</Typography><Typography
                         noWrap={true}>{response}</Typography>
-                        <IconButton  >
+                        <IconButton>
                             <ContentCopyIcon color="secondary" onClick={handleCopy}/>
                         </IconButton>
                     </Paper></div>;
@@ -122,7 +136,7 @@ const FormTemplate = (props: props) => {
 
                                 onChange={event => handleInputChange(event)}
                             />
-                            <Button type="submit">Register</Button>
+                            {disabled ? <></> :    <Button variant="contained" sx={{mt: 1}} type="submit">Submit</Button>}
                         </FormControl>
                     </form>)
 

@@ -18,6 +18,7 @@ interface Iprops {
     action?: string,
     disabled?: boolean,
 
+
 }
 
 const FormModalTemplate = (props: Iprops) => {

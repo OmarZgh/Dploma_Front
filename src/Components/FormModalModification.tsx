@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Dialog, DialogActions, DialogContent, Divider,} from "@mui/material";
-import {Dispatch, SetStateAction} from "react";
+import {Dialog, DialogActions, DialogContent, Divider, Paper,} from "@mui/material";
+import {Dispatch, SetStateAction, useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
 import FormTemplate from "./FormTemplate";
+import {ITemplate, RequestQueryStatus} from "../type";
+import LinearBuffer from "./LinearBuffer";
+import {updateTemp} from "../hooks/useSmc";
 
 
 interface Iprops {
@@ -19,13 +22,17 @@ interface Iprops {
     action?: string,
     disabled?: boolean,
 
-    hash?: string,
+    hash: string,
+
 
 }
 
 const FormModalModification = (props: Iprops) => {
-
+    const [template, setTemplate] = React.useState<ITemplate >({})
     const {children, open = false, setOpen, title, action, disabled} = props;
+    const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
+    const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
+    const [response, setResponse] = useState<string>("")
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -33,6 +40,43 @@ const FormModalModification = (props: Iprops) => {
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleModify = () => {
+        setRequestStatus(LOADING);
+        updateTemp(template, props.hash).then((res) => {
+           // setResponse(res.events.evtUpdatedTemp.returnValues[0])
+            setRequestStatus(SUCCESS);
+        }).catch(() => {
+            setRequestStatus(ERROR);
+        })
+    }
+    const renderContent = () => {
+        switch (requestStatus) {
+            case LOADING:
+                return <div style={{display: "flex"}}>
+                    <LinearBuffer/>
+                </div>;
+            case SUCCESS:
+                return <div><Typography variant={"h5"}>Modify content
+                    status</Typography><Typography
+                    noWrap={true}>{response}</Typography>
+
+                </div>
+            case ERROR:
+                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Modify content
+                    status</Typography><Typography
+                    noWrap={true}>{response}</Typography>
+
+                </Paper></div>
+            default:
+                return   (
+                    <><Typography>Please notice that this action will perform a modification over the actual template
+                        informations.</Typography><FormTemplate disabled={true}
+                                                                setTemplate={setTemplate}></FormTemplate></>
+                )
+
+        }
+    }
 
     return (
         <div>
@@ -64,11 +108,11 @@ const FormModalModification = (props: Iprops) => {
 
             >
                 <DialogContent> <FormLayout title={title} description={""}
-                />Please notice that this action will perform a modification over the actual template informations.
-                    <FormTemplate></FormTemplate>
+                />
+                    {renderContent()}
                 </DialogContent>
                 <DialogActions>
-
+                    <Button onClick={handleModify}>Modify</Button>
                     <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>

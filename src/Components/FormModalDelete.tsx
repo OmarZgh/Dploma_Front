@@ -2,11 +2,14 @@ import * as React from 'react';
 
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Dialog, DialogActions, DialogContent, Divider,} from "@mui/material";
-import {Dispatch, SetStateAction} from "react";
+import {Dialog, DialogActions, DialogContent, Divider, Paper,} from "@mui/material";
+import {Dispatch, SetStateAction, useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
+import {RequestQueryStatus} from "../type";
+import {deleteCertification} from "../hooks/useSmc";
+import LinearBuffer from "./LinearBuffer";
 
 
 interface Iprops {
@@ -17,11 +20,13 @@ interface Iprops {
     description?: string | undefined,
     action?: string,
     disabled?: boolean,
-    hash?: string,
+    hash: string,
 }
 
 const FormModalDelete = (props: Iprops) => {
-
+    const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
+    const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
+    const [response, setResponse] = useState<string>("")
     const {children, open = false, setOpen, title, action, disabled} = props;
     const handleClickOpen = () => {
         setOpen(true);
@@ -31,9 +36,42 @@ const FormModalDelete = (props: Iprops) => {
         setOpen(false);
     };
     const handleDelete = () => {
-    console.log("delete")
-        setOpen(false);
+        setRequestStatus(LOADING);
+        deleteCertification(props.hash).then((res) => {
+            setResponse(res.events.evtDeletedCertif.returnValues[0])
+            setRequestStatus(SUCCESS);
+        }).catch(() => {
+            setRequestStatus(ERROR);
+        })
     }
+
+    const renderContent = () => {
+        switch (requestStatus) {
+            case LOADING:
+                return <div style={{display: "flex"}}>
+                    <LinearBuffer/>
+                </div>;
+            case SUCCESS:
+                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Visbility
+                    status</Typography><Typography
+                    noWrap={true}>{response}</Typography>
+
+                </Paper></div>
+            case ERROR:
+                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Visbility
+                    status</Typography><Typography
+                    noWrap={true}>Error</Typography>
+                </Paper></div>
+            default:
+                return <div><Typography variant={"h5"}>Please notice that this action is
+                    irreversible
+                    and will delete the certification from the blockchain ,Consider modifying it instead. Could you
+                    please confirm your the deletion of this certification?</Typography>
+                </div>
+        }
+    }
+
+
     return (
         <div>
 
@@ -63,9 +101,7 @@ const FormModalDelete = (props: Iprops) => {
 
             >
                 <DialogContent> <FormLayout title={title} description={""}
-                />Please notice that this action is irreversible
-                    and will delete the certification from the blockchain ,Consider modifying it instead. Could you
-                    please confirm your the deletion of this certification?
+                /> {renderContent()}
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleDelete}>Confirm</Button>

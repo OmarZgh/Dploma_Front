@@ -34,8 +34,11 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
                             <Typography noWrap={true} align={"left"} color={"primary"}><strong>Public address
                                 :</strong> {diplomas?.dip_addr_certified}
                             </Typography>
-                            <Typography align={"left"} color={"primary"}><strong>Name
+                            <Typography align={"left"} color={"primary"}><strong>First name
                                 :</strong> {diplomas?.dip_certified?.cfied_firstname}
+                            </Typography>
+                            <Typography align={"left"} color={"primary"}><strong>First name
+                                :</strong> {diplomas?.dip_certified?.cfied_lastname}
                             </Typography>
                             <Typography align={"left"}><strong>Birthdate
                                 :</strong> {diplomas?.dip_certified?.cfied_birthdate}</Typography>
@@ -45,9 +48,9 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
 
                             <Typography variant={"h3"} align={"left"}>Diploma</Typography>
                             <Divider/>
-                            <Typography align={"left"}><strong>Name :</strong>
+                            <Typography align={"left"}><strong>Title :</strong>
                             </Typography>
-                            <Typography align={"left"}>{diplomas?.dip_template?.temp_name}
+                            <Typography align={"left"}>{diplomas?.dip_template?.temp_title}
                             </Typography>
                             <Typography align={"left"}><strong>Name :</strong> {diplomas?.dip_template?.temp_name}
                             </Typography>

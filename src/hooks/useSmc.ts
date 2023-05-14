@@ -1,4 +1,10 @@
-import {addTemplate, getDploma, insertWithoutTemplate, insertWithTemplate,} from "../Services/Web3APi";
+import {
+    addTemplate,
+    changeVisibility, deleteCertif,
+    getDploma,
+    insertWithoutTemplate,
+    insertWithTemplate, updateTemplate,
+} from "../Services/Web3APi";
 import {useEffect, useState} from "react";
 import {IDploma, ITemplate} from "../type";
 
@@ -10,47 +16,45 @@ const fetchWeb3 = async (id?: string | undefined) => {
     }) : undefined
 }
 
-const insertTemplate = async (template: ITemplate) => {
+export const insertTemplate = async (template: ITemplate) => {
     return addTemplate(template.temp_title!, template.temp_name!, template.temp_date!, template.temp_speciality!)
 
 }
 
-const updateTemplate = (template: ITemplate, hash: string) => {
+export const updateTemp = (template: ITemplate, hash: string) => {
+    return updateTemplate(hash, template.temp_title!, template.temp_name!, template.temp_date!, template.temp_speciality!)
 }
 export const createWithoutTemplate = (certifiedFirstName: string,
-                               certifiedLastName: string,
-                               certifiedBirthDate: string,
-                               certifierName: string,
-                               certifierPhysicalAdress: string,
-                               certifiedPublicAdress: string,
-                               templateTitle: string,
-                               templateName: string,
-                               tempDate: string,
-                               otherValues: string[]) => {
+                                      certifiedLastName: string,
+                                      certifiedBirthDate: string,
+                                      certifierName: string,
+                                      certifierPhysicalAdress: string,
+                                      certifiedPublicAdress: string,
+                                      templateTitle: string,
+                                      templateName: string,
+                                      tempDate: string,
+                                      otherValues: string[]) => {
     return insertWithoutTemplate(certifiedFirstName, certifiedLastName, certifiedBirthDate, certifierName, certifierPhysicalAdress, certifiedPublicAdress, templateTitle, templateName, tempDate, otherValues)
 
 }
 export const createWithTemplate = (cfiedfirstname: string,
-                            cfiedLastname: string,
-                            cfiedBirthdate: string,
-                            cfierName: string,
-                            cfierPhysicalAdress: string,
-                            hashTemplate: string,
-                            certifiedPubAdress: string,) => {
+                                   cfiedLastname: string,
+                                   cfiedBirthdate: string,
+                                   cfierName: string,
+                                   cfierPhysicalAdress: string,
+                                   hashTemplate: string,
+                                   certifiedPubAdress: string,) => {
     return insertWithTemplate(cfiedfirstname, cfiedLastname, cfiedBirthdate, cfierName, cfierPhysicalAdress, hashTemplate, certifiedPubAdress)
 }
-const deleteCertif = (template: string) => {
+export const deleteCertification = (hash: string) => {
 
-    return null;
-}
-const modifyTemplate = (template: ITemplate, hash: string) => {
-
-    return null;
+  return deleteCertif(hash)
 }
 
-const toggleVisibility = (hash: string) => {
 
-    return null;
+export const toggleVisibility = (hash: string) => {
+    return  changeVisibility(hash)
+
 }
 
 export const useSmc = (props: { id: string } | undefined) => {
@@ -69,9 +73,8 @@ export const useSmc = (props: { id: string } | undefined) => {
         certification,
         fetchWeb3: fetchWeb3,
         insertWithTemplate,
-        insertTemplate,
         insertWithoutTemplate,
-        updateTemplate
+        updateTemplate: updateTemp
     }
 }
 

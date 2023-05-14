@@ -5,7 +5,6 @@ import {IDploma} from "../type";
 
 const web3 = new Web3((window as any).ethereum)
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
-
 const dploma = new web3.eth.Contract(abi as AbiItem[], contractAddress);
 
 export const getDploma = async (id: string) => {
@@ -59,7 +58,7 @@ export const insertWithoutTemplate = async (cfiedfirstname: string,
         tempSpecs).send({from: sender[0]});
 }
 
-const updateTemplate = async (hashTemplate: string,
+export const updateTemplate = async (hashTemplate: string,
                               title: string,
                               name: string,
                               date: string,
@@ -74,14 +73,12 @@ const updateTemplate = async (hashTemplate: string,
     return diploma;
 }
 
-const deleteCertif = async (id: string) => {
+export const deleteCertif = async (id: string) => {
     const sender = await web3.eth.getAccounts()
-    const diploma: IDploma = await dploma.methods.DeleteCertif(id).send({from: sender[0]});
-    return diploma;
+    return await dploma.methods.DeleteCertif(id).send({from: sender[0]});
 }
 
-const changeVisibility = async (id: string) => {
+export const changeVisibility = async (id: string) => {
     const sender = await web3.eth.getAccounts()
-    const diploma: IDploma = await dploma.methods.toggleStudentVisibility(id).send({from: sender[0]});
-    return diploma;
+    return await dploma.methods.toggleStudentVisibility(id).send({from: sender[0]});
 }
