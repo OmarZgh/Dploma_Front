@@ -11,18 +11,19 @@ import {IDploma, ITemplate} from "../type";
 
 const fetchWeb3 = async (id?: string | undefined) => {
     return id! ? await getDploma(id).then((res: IDploma) => {
+        console.log(res )
         const certif: IDploma = res
         return certif
     }) : undefined
 }
 
 export const insertTemplate = async (template: ITemplate) => {
-    return addTemplate(template.temp_title!, template.temp_name!, template.temp_date!, template.temp_speciality!)
+    return addTemplate(template.temp_title!, template.temp_name!, template.temp_date!, template.temp_spec!)
 
 }
 
 export const updateTemp = (template: ITemplate, hash: string) => {
-    return updateTemplate(hash, template.temp_title!, template.temp_name!, template.temp_date!, template.temp_speciality!)
+    return updateTemplate(hash, template.temp_title!, template.temp_name!, template.temp_date!, template.temp_spec!)
 }
 export const createWithoutTemplate = (certifiedFirstName: string,
                                       certifiedLastName: string,

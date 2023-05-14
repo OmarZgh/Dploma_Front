@@ -57,7 +57,7 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
                             <Typography align={"left"}><strong>Date :</strong> {diplomas?.dip_template?.temp_date}
                             </Typography>
                             <Typography align={"left"}><strong>Speciality
-                                :</strong> {diplomas?.dip_template?.temp_speciality?.map((speciality, index) => {
+                                :</strong> {diplomas?.dip_template?.temp_spec?.map((speciality, index) => {
                                 return <div key={index}>{speciality}</div>
                             })}
                             </Typography>

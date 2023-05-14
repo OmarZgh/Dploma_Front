@@ -23,7 +23,7 @@ export interface ITemplate {
     temp_title?: string
     temp_name?: string
     temp_date?: string
-    temp_speciality?: string[]
+    temp_spec?: string[]
 }
 
 export  enum RequestQueryStatus  {
