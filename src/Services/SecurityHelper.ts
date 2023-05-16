@@ -1,5 +1,4 @@
 import {IDploma} from "../type";
-import {useState} from "react";
 
 export function checkKeyIntegrity(accessKeyRef: string) {
     //TODO :check length
@@ -18,8 +17,7 @@ export function checkRightsIntegrity(dploma: IDploma | undefined, account: strin
         return "CERTIFIER"
     } else if (dploma?.certAddrCertified?.toLowerCase().includes(account)) {
         return "CERTIFIED"
-    }
-    else {
+    } else {
         return "USER"
     }
 

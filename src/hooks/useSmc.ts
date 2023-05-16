@@ -11,7 +11,6 @@ import {IDploma, ITemplate} from "../type";
 
 const fetchWeb3 = async (id?: string | undefined) => {
     return id! ? await getDploma(id).then((res: IDploma) => {
-        console.log(res )
         const certif: IDploma = res
         return certif
     }) : undefined
@@ -49,12 +48,12 @@ export const createWithTemplate = (cfiedfirstname: string,
 }
 export const deleteCertification = (hash: string) => {
 
-  return deleteCertif(hash)
+    return deleteCertif(hash)
 }
 
 
 export const toggleVisibility = (hash: string) => {
-    return  changeVisibility(hash)
+    return changeVisibility(hash)
 
 }
 

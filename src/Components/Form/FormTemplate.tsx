@@ -1,8 +1,8 @@
-import {Button, Container, FormControl, IconButton, LinearProgress, Paper, TextField, Typography} from "@mui/material";
+import {Button, Container, FormControl, IconButton, Paper, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {ITemplate, RequestQueryStatus} from "../type";
-import {insertTemplate, useSmc} from "../hooks/useSmc";
-import LinearBuffer from "./LinearBuffer";
+import {ITemplate, RequestQueryStatus} from "../../type";
+import {insertTemplate} from "../../hooks/useSmc";
+import LinearBuffer from "../LinearBuffer";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 interface FormValues {

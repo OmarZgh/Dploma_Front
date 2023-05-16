@@ -5,7 +5,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import {Divider} from "@mui/material";
-import {ComponentProps} from "react";
+
 
 interface props {
     title: string;

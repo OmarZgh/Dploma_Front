@@ -1,14 +1,10 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
-
-import {Dploma} from "../../Type/Types";
-import {getDploma} from "../Services/Web3APi";
+import React, {useEffect, useState} from "react";
 import {useSmc} from "../hooks/useSmc";
-import {id} from "ethers";
-import {Button, Grid, Input, Paper} from "@mui/material";
+import {Button, Grid, Input} from "@mui/material";
 import {IDploma} from "../type";
 import Box from "@mui/material/Box";
 import DisplayDiploma from "../Components/DisplayDiploma";
-import FormLayout from "../Components/FormLayout";
+import FormLayout from "../Components/Form/FormLayout";
 import {useLocation} from "react-router-dom";
 import QRcode from "../Components/QRcode";
 
@@ -23,9 +19,13 @@ const FindAndExplore = (props: any) => {
     const [displayQR, setDisplayQR] = useState<boolean>(false);
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-        setHash({id: event.target.value})
-        id?.startsWith("0x") ? setHash({id: event.target.value}) : setHash({id: "0x" + event.target.value})
 
+        if (!hash.id?.startsWith("0x")) {
+            setHash({id:"0x"+ event.target.value})
+        }
+        else{
+            setHash({id: event.target.value})
+        }
     }
 
 
@@ -49,14 +49,13 @@ const FindAndExplore = (props: any) => {
     }
     useEffect(() => {
         if (isEmpty(hash)) {
-            console.log("empty")
             setDplomas(undefined)
             setDisplayQR(false)
         } else if (dplomas) {
             setDisplayQR(true)
         }
 
-    }, [hash, dplomas])
+    }, [hash, dplomas,handleChange])
     return (
         <FormLayout title={"find"} description={"search for a diploma"}>
             <Box>
@@ -70,7 +69,7 @@ const FindAndExplore = (props: any) => {
                   container
                   direction="column"
             >
-                   <div style={{}}> {displayQR ? <QRcode hash={hash.id}/> : <></>}</div>
+                <div style={{}}> {displayQR ? <QRcode hash={hash.id}/> : <></>}</div>
 
             </Grid>
         </FormLayout>

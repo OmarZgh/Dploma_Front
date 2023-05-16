@@ -1,16 +1,10 @@
 import {Button, Container, Grid, Paper, Typography} from "@mui/material";
-import ButtonModal from "../Components/ButtonModal";
 import {useEffect, useState} from "react";
 import {useWeb3} from "../hooks/Hooks";
-import QRcode from "../Components/QRcode";
-import FormModalTemplate from "../Components/FormModalTemplate";
-import FindAndExplore from "./FindAndExplore";
-import FormLayout from "../Components/FormLayout";
-import FormTemplate from "../Components/FormTemplate";
+import FormModalTemplate from "../Components/Modal/FormModalTemplate";
 import * as React from "react";
-import FormInsertWithTemplate from "../Components/FormInsertWithTemplate";
-import FormModalInsertWithTemlate from "../Components/FromModalInsertWithTemplate";
-import FormModalInsertWithouTemplate from "../Components/FormModalInsertWithouTemplate";
+import FormModalInsertWithTemlate from "../Components/Form/FromModalInsertWithTemplate";
+import FormModalInsertWithouTemplate from "../Components/Modal/FormModalInsertWithouTemplate";
 
 const Register = () => {
 

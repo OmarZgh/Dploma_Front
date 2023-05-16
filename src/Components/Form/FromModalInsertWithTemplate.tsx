@@ -1,20 +1,12 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
-import {Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Paper} from "@mui/material";
-import {Dispatch, SetStateAction, useState} from "react";
-import ButtonModal from "./ButtonModal";
+import {Dialog, DialogActions, DialogContent, Divider} from "@mui/material";
+import {Dispatch, SetStateAction} from "react";
 import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
-import FormTemplate from "./FormTemplate";
-import DialogContext from "@mui/material/Dialog/DialogContext";
 import FormInsertWithTemplate from "./FormInsertWithTemplate";
-import FormWithoutTemplate from "./FormInsertWithoutTemplate";
-import {RequestQueryStatus} from "../type";
 
 interface Iprops {
     children?: React.ReactNode,
@@ -27,9 +19,7 @@ interface Iprops {
 }
 
 const FormModalInsertWithTemlate= (props: Iprops) => {
-    const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
-    const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
-    const [response, setResponse] = useState<string>("")
+
     const {children, open = false, setOpen, title, description, action} = props;
     const handleClickOpen = () => {
         setOpen(true);
@@ -38,8 +28,6 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
     const handleClose = () => {
         setOpen(false);
     };
-
-
 
     return (
         <div>
@@ -70,10 +58,10 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
 
             >
                 <DialogContent> <FormLayout title={title}
-                                            description={description}></FormLayout><FormWithoutTemplate />
+                                            description={description}></FormLayout><FormInsertWithTemplate></FormInsertWithTemplate>
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Close</Button>
+                    <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>
         </div>)

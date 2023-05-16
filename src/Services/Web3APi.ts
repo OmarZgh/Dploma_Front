@@ -59,10 +59,10 @@ export const insertWithoutTemplate = async (cfiedfirstname: string,
 }
 
 export const updateTemplate = async (hashTemplate: string,
-                              title: string,
-                              name: string,
-                              date: string,
-                              spec: string[]) => {
+                                     title: string,
+                                     name: string,
+                                     date: string,
+                                     spec: string[]) => {
     const sender = await web3.eth.getAccounts()
     const diploma: IDploma = await dploma.methods.ModifyTemplate(
         hashTemplate,

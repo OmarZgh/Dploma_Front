@@ -6,11 +6,11 @@ import {Dialog, DialogActions, DialogContent, Divider, Paper,} from "@mui/materi
 import {Dispatch, SetStateAction, useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import FormLayout from "./FormLayout";
-import {RequestQueryStatus} from "../type";
-import LinearBuffer from "./LinearBuffer";
-import QRcode from "./QRcode";
-import {toggleVisibility} from "../hooks/useSmc";
+import FormLayout from "../Form/FormLayout";
+import FormTemplate from "../Form/FormTemplate";
+import {ITemplate, RequestQueryStatus} from "../../type";
+import LinearBuffer from "../LinearBuffer";
+import {updateTemp} from "../../hooks/useSmc";
 
 
 interface Iprops {
@@ -21,11 +21,14 @@ interface Iprops {
     description?: string | undefined,
     action?: string,
     disabled?: boolean,
+
     hash: string,
+
+
 }
 
-const FormModalVisbility = (props: Iprops) => {
-
+const FormModalModification = (props: Iprops) => {
+    const [template, setTemplate] = React.useState<ITemplate >({})
     const {children, open = false, setOpen, title, action, disabled} = props;
     const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
     const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
@@ -37,13 +40,13 @@ const FormModalVisbility = (props: Iprops) => {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleCertifiedVisibility = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault()
+
+    const handleModify = () => {
         setRequestStatus(LOADING);
-        toggleVisibility(props.hash).then((res) => {
-            setResponse(res.events.evtCertifiedVisisbility.returnValues[0])
+        updateTemp(template, props.hash).then((res) => {
+           // setResponse(res.events.evtUpdatedTemp.returnValues[0])
             setRequestStatus(SUCCESS);
-        }).catch((err) => {
+        }).catch(() => {
             setRequestStatus(ERROR);
         })
     }
@@ -54,23 +57,33 @@ const FormModalVisbility = (props: Iprops) => {
                     <LinearBuffer/>
                 </div>;
             case SUCCESS:
-                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Visbility
+                return <div><Typography variant={"h5"}>Modify content
                     status</Typography><Typography
                     noWrap={true}>{response}</Typography>
-                    <QRcode hash={response}/>
 
-                </Paper></div>;
+                </div>
             case ERROR:
-                return <div>Error</div>;
+                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Modify content
+                    status</Typography><Typography
+                    noWrap={true}>{response}</Typography>
+
+                </Paper></div>
             default:
-                return <div>Please notice that this action will hide the personal information of the user concerned by
-                    this
-                    certification</div>;
+                return   (
+                    <><Typography>Please notice that this action will perform a modification over the actual template
+                        informations.</Typography><FormTemplate disabled={true}
+                                                                setTemplate={setTemplate}></FormTemplate></>
+                )
+
         }
     }
+
     return (
         <div>
+
+
             <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
+
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
@@ -90,18 +103,21 @@ const FormModalVisbility = (props: Iprops) => {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="alert-dialog-title"
+
                 aria-describedby="alert-dialog-description"
 
             >
-                <div><DialogContent> <FormLayout title={title} description={""}/> {renderContent()}
-                </DialogContent></div>
-
+                <DialogContent> <FormLayout title={title} description={""}
+                />
+                    {renderContent()}
+                </DialogContent>
                 <DialogActions>
-                    <Button onClick={(e) => handleCertifiedVisibility(e)}>Confirm</Button>
+                    <Button onClick={handleModify}>Modify</Button>
                     <Button onClick={handleClose}>Cancel</Button>
                 </DialogActions>
             </Dialog>
         </div>)
+
 }
 
-export default FormModalVisbility
+export default FormModalModification

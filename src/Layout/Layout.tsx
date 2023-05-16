@@ -4,8 +4,8 @@ import TabsLayout from "./TabsLayout";
 import React, {useState} from "react";
 import Footer from "../Components/Footer";
 import {useWeb3} from "../hooks/Hooks";
-import {BrowserRouter, Routes, Route, useParams} from "react-router-dom";
-import FindAndExplore from "../Pages/FindAndExplore";
+import {BrowserRouter} from "react-router-dom";
+
 
 
 interface props {

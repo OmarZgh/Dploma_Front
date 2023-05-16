@@ -5,8 +5,8 @@ import {Dialog, DialogActions, DialogContent,Divider} from "@mui/material";
 import {Dispatch, SetStateAction} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import FormLayout from "./FormLayout";
-import FormTemplate from "./FormTemplate";
+import FormLayout from "../Form/FormLayout";
+import FormTemplate from "../Form/FormTemplate";
 
 
 interface Iprops {
@@ -23,7 +23,7 @@ interface Iprops {
 
 const FormModalTemplate = (props: Iprops) => {
 
-    const {children, open = false, setOpen, title, description, action, disabled} = props;
+    const { open = false, setOpen, title, description, action, disabled} = props;
     const handleClickOpen = () => {
         setOpen(true);
     };

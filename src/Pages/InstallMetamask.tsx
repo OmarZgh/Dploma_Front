@@ -1,5 +1,5 @@
-import {Button, ButtonBaseActions, Container, Typography} from "@mui/material";
-import {ReactElement} from "react";
+import {Button,Container, Typography} from "@mui/material";
+
 import Box from "@mui/material/Box";
 
 const InstallMetamask = () => {

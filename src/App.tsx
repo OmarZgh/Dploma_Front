@@ -11,17 +11,19 @@ function App() {
         palette: {
             mode: 'light',
             primary: {
-                main:red[500]
+                main: '#394867',
+
             },
             secondary: {
                 light: red[500],
-                main: red[700],
+                main: '#212A3E',
                 dark: red[900],
                 contrastText: grey[50]
             },
+
             error: {
                 light: red[400],
-                main: red[500],
+                main: '#212A3E',
                 dark: red[300],
                 contrastText: grey[800]
             },
@@ -63,7 +65,6 @@ function App() {
             tonalOffset: 0.2,
 
 
-
         }
 
     });
@@ -76,9 +77,9 @@ function App() {
 
     return (
 
-            <div className="App">
-                <Layout theme={theme} darkTheme={darkTheme}/>
-            </div>
+        <div className="App">
+            <Layout theme={theme} darkTheme={darkTheme}/>
+        </div>
 
 
     );

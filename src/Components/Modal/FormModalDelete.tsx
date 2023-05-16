@@ -6,10 +6,10 @@ import {Dialog, DialogActions, DialogContent, Divider, Paper,} from "@mui/materi
 import {Dispatch, SetStateAction, useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import FormLayout from "./FormLayout";
-import {RequestQueryStatus} from "../type";
-import {deleteCertification} from "../hooks/useSmc";
-import LinearBuffer from "./LinearBuffer";
+import FormLayout from "../Form/FormLayout";
+import {RequestQueryStatus} from "../../type";
+import {deleteCertification} from "../../hooks/useSmc";
+import LinearBuffer from "../LinearBuffer";
 
 
 interface Iprops {
@@ -27,7 +27,7 @@ const FormModalDelete = (props: Iprops) => {
     const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
     const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
     const [response, setResponse] = useState<string>("")
-    const {children, open = false, setOpen, title, action, disabled} = props;
+    const { open = false, setOpen, title, action, disabled} = props;
     const handleClickOpen = () => {
         setOpen(true);
     };

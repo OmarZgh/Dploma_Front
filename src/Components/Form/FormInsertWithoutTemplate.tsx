@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {Button, FormControl, Container, TextField, Paper, Typography, IconButton} from "@mui/material";
-import {IDploma, RequestQueryStatus} from "../type";
-import {createWithoutTemplate, useSmc} from "../hooks/useSmc";
-import LinearBuffer from "./LinearBuffer";
-import QRcode from "./QRcode";
+import { RequestQueryStatus} from "../../type";
+import {createWithoutTemplate} from "../../hooks/useSmc";
+import LinearBuffer from "../LinearBuffer";
+import QRcode from "../QRcode";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 

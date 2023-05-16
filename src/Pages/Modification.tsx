@@ -3,13 +3,12 @@ import {useState} from "react";
 import {useWeb3} from "../hooks/Hooks";
 import {checkKeyIntegrity, checkRightsIntegrity, Rights} from "../Services/SecurityHelper";
 import Box from "@mui/material/Box";
-import FormModalTemplate from "../Components/FormModalTemplate";
 import * as React from "react";
 import {getDploma} from "../Services/Web3APi";
-import FormModalDelete from "../Components/FormModalDelete";
-import FormModalModification from "../Components/FormModalModification";
-import FormModalVisbility from "../Components/FormModalVisbility";
-import {ITemplate} from "../type";
+import FormModalDelete from "../Components/Modal/FormModalDelete";
+import FormModalModification from "../Components/Modal/FormModalModification";
+import FormModalVisbility from "../Components/Form/FormModalVisbility";
+
 
 
 const Modification = () => {
