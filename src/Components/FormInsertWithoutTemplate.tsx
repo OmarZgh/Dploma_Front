@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {Button, FormControl, Container, TextField, Paper, Typography} from "@mui/material";
+import {Button, FormControl, Container, TextField, Paper, Typography, IconButton} from "@mui/material";
 import {IDploma, RequestQueryStatus} from "../type";
 import {createWithoutTemplate, useSmc} from "../hooks/useSmc";
 import LinearBuffer from "./LinearBuffer";
 import QRcode from "./QRcode";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 
 interface FormValues {
@@ -86,7 +87,9 @@ const FormWithoutTemplate = (props: props) => {
             });
 
         };
-
+    const handleCopy = () => {
+        navigator.clipboard.writeText(response)
+    }
 
         const renderContent = () => {
             switch (requestStatus) {
@@ -95,9 +98,11 @@ const FormWithoutTemplate = (props: props) => {
                         <LinearBuffer/>
                     </div>;
                 case SUCCESS:
-                    return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Hash
-                        certifcation</Typography><Typography
+                    return <div><Paper variant={"outlined"} sx={{p:2}}><Typography variant={"h5"}>Hash Template</Typography><Typography
                         noWrap={true}>{response}</Typography>
+                        <IconButton>
+                            <ContentCopyIcon color="secondary" onClick={handleCopy}/>
+                        </IconButton>
                         <QRcode hash={response}/>
 
                     </Paper></div>;

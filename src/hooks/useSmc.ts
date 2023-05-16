@@ -18,12 +18,12 @@ const fetchWeb3 = async (id?: string | undefined) => {
 }
 
 export const insertTemplate = async (template: ITemplate) => {
-    return addTemplate(template.temp_title!, template.temp_name!, template.temp_date!, template.temp_spec!)
+    return addTemplate(template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpec!)
 
 }
 
 export const updateTemp = (template: ITemplate, hash: string) => {
-    return updateTemplate(hash, template.temp_title!, template.temp_name!, template.temp_date!, template.temp_spec!)
+    return updateTemplate(hash, template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpec!)
 }
 export const createWithoutTemplate = (certifiedFirstName: string,
                                       certifiedLastName: string,

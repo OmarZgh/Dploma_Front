@@ -30,7 +30,7 @@ const FormTemplate = (props: props) => {
         const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
         const [response, setResponse] = useState<string>("")
         const [formValues, setFormValues] = useState<ITemplate>({
-            temp_title: "", temp_name: "", temp_date: "", temp_spec: [],
+            tempTitle: "", tempName: "", tempDate: "", tempSpec: [],
         });
 
 

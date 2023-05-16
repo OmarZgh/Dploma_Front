@@ -1,9 +1,10 @@
 import React, {useState} from "react";
-import {Button, FormControl, Container, TextField, Paper, Typography} from "@mui/material";
+import {Button, FormControl, Container, TextField, Paper, Typography, IconButton} from "@mui/material";
 import {createWithTemplate, useSmc} from "../hooks/useSmc";
 import {IDploma, RequestQueryStatus} from "../type";
 import LinearBuffer from "./LinearBuffer";
 import QRcode from "./QRcode";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 
 
 interface FormValues {
@@ -45,7 +46,9 @@ const FormInsertWithTemplate = (props: props) => {
         const certifiedBirthDate = new Date(event.target.value).toDateString();
         setFormValues(prevValues => ({...prevValues, certifiedBirthDate}));
     };
-
+    const handleCopy = () => {
+        navigator.clipboard.writeText(response)
+    }
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setRequestStatus(LOADING);
@@ -71,12 +74,12 @@ const FormInsertWithTemplate = (props: props) => {
                     <LinearBuffer/>
                 </div>;
             case SUCCESS:
-                return <div><Paper variant={"outlined"}><Typography variant={"h5"}>Hash
-                    certifcation</Typography><Typography
+                return <div><Paper variant={"outlined"} sx={{p:2}}><Typography variant={"h5"}>Hash Template</Typography><Typography
                     noWrap={true}>{response}</Typography>
-                    <QRcode hash={response}/>
-
-                </Paper></div>;
+                    <IconButton>
+                        <ContentCopyIcon color="secondary" onClick={handleCopy}/>
+                    </IconButton>
+                    <QRcode hash={response}/></Paper></div>;
             case ERROR:
                 return <div>Error</div>;
             default:

@@ -73,7 +73,7 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
                                             description={description}></FormLayout><FormWithoutTemplate />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         </div>)
