@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useSmc} from "../hooks/useSmc";
 import {Button, Grid, Input} from "@mui/material";
-import {IDploma} from "../type";
+import {IDploma} from "../Type/type";
 import Box from "@mui/material/Box";
 import DisplayDiploma from "../Components/DisplayDiploma";
 import FormLayout from "../Components/Form/FormLayout";
@@ -20,14 +20,8 @@ const FindAndExplore = (props: any) => {
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
 
-        if (!hash.id?.startsWith("0x")) {
-            setHash({id:"0x"+ event.target.value})
-        }
-        else{
-            setHash({id: event.target.value})
-        }
+        setHash({id: event.target.value})
     }
-
 
     function handleClick() {
         let promise = fetchWeb3(hash.id);
@@ -54,8 +48,12 @@ const FindAndExplore = (props: any) => {
         } else if (dplomas) {
             setDisplayQR(true)
         }
+        if(id){
+            setHash({id: id})
+            setDisplayQR(true)
+        }
 
-    }, [hash, dplomas,handleChange])
+    }, [ dplomas,handleChange])
     return (
         <FormLayout title={"find"} description={"search for a diploma"}>
             <Box>

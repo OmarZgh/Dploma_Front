@@ -7,7 +7,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "../Form/FormLayout";
 import FormWithoutTemplate from "../Form/FormInsertWithoutTemplate";
-import {RequestQueryStatus} from "../../type";
+import {RequestQueryStatus} from "../../Type/type";
 
 interface Iprops {
     children?: React.ReactNode,
@@ -38,7 +38,7 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
         <div>
 
 
-            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
+            <Card sx={{maxWidth: 345}} style={{borderRadius: 20}}>
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

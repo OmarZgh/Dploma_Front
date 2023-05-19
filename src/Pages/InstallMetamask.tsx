@@ -3,12 +3,6 @@ import {Button,Container, Typography} from "@mui/material";
 import Box from "@mui/material/Box";
 
 const InstallMetamask = () => {
-    const Style = {
-        minHeight: "60vh",
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: "10vh",
-    }
     const handleClick = (e: any) => {
         window.open("https://metamask.io/download.html", "_blank")
     }

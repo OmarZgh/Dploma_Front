@@ -1,5 +1,5 @@
 import {Rights} from "../Services/SecurityHelper";
-import {IDploma} from "../type";
+import {IDploma} from "../Type/type";
 
 interface IProps {
     userRights: Rights

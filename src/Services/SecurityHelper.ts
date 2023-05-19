@@ -1,10 +1,14 @@
-import {IDploma} from "../type";
+import {IDploma} from "../Type/type";
 
 export function checkKeyIntegrity(accessKeyRef: string) {
-    //TODO :check length
-    //TODO :check NoSpace
-    //TODO :Check type Character
-    return true;
+
+    let regex = new RegExp("^[a-zA-Z0-9]*$");
+    let size = accessKeyRef.length;
+    const isMatch = regex.test(accessKeyRef);
+    if (!isMatch && size <29 && size >32) {
+        return false;
+    }
+    else return true;
 }
 
 export type Rights = "CERTIFIER" | "CERTIFIED" | "USER" | "CERTIFIED&CERTIFIER" | "NONE"

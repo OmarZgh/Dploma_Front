@@ -1,17 +1,19 @@
 import Web3 from "web3";
 import {AbiItem} from 'web3-utils'
 import abi from "../ABI/ABI.json";
-import {IDploma} from "../type";
+import {IDploma} from "../Type/type";
 
+const alchemyKey = new Web3("https://eth-sepolia.g.alchemy.com/v2/P6zmb6lMhjRLlQKIgIFcSZ8zuG-Q2Sq0")
 const web3 = new Web3((window as any).ethereum)
 const contractAddress = process.env.REACT_APP_CONTRACT_ADDRESS;
 const dploma = new web3.eth.Contract(abi as AbiItem[], contractAddress);
+const test=  new alchemyKey.eth.Contract(abi as AbiItem[], contractAddress);
 
 export const getDploma = async (id: string) => {
-    const diploma: IDploma = await dploma.methods.getCertification(id).call();
+    const diploma: IDploma = await test.methods.getCertification(id).call();
     return diploma;
 }
-export const addTemplate = async (title: string, name: string, date: string, spec: string[]) => {
+export const addTemplate = async (title: string, name: string, date: number, spec: string[]) => {
     const sender = await web3.eth.getAccounts()
     return await dploma.methods.createTemplate(title, name, date, spec).send({from: sender[0]});
 }
@@ -42,7 +44,7 @@ export const insertWithoutTemplate = async (cfiedfirstname: string,
                                             certifiedPubAdress: string,
                                             temptitle: string,
                                             tempName: string,
-                                            tempDate: string,
+                                            tempDate: number,
                                             tempSpecs: string[]) => {
     const sender = await web3.eth.getAccounts()
     return await dploma.methods.insertWithoutTemplate(
@@ -61,10 +63,11 @@ export const insertWithoutTemplate = async (cfiedfirstname: string,
 export const updateTemplate = async (hashTemplate: string,
                                      title: string,
                                      name: string,
-                                     date: string,
+                                     date: number,
                                      spec: string[]) => {
     const sender = await web3.eth.getAccounts()
-    const diploma: IDploma = await dploma.methods.ModifyTemplate(
+    console.log(hashTemplate, title, name, date, spec)
+    const diploma = await dploma.methods.ModifyTemplate(
         hashTemplate,
         title,
         name,

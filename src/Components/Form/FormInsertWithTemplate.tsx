@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Button, FormControl, Container, TextField, Paper, Typography, IconButton} from "@mui/material";
 import {createWithTemplate} from "../../hooks/useSmc";
-import {RequestQueryStatus} from "../../type";
+import {RequestQueryStatus} from "../../Type/type";
 import LinearBuffer from "../LinearBuffer";
 import QRcode from "../QRcode";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -103,7 +103,7 @@ const FormInsertWithTemplate = (props: props) => {
                             sx={{mt: 1}}
                             onChange={handleInputChange}
                         />
-                        <text>Certified Birth Date</text>
+                        <Typography>Certified Birth Date</Typography>
                         <TextField
                             required={true}
                             name="certifiedBirthDate"

@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Button, FormControl, Container, TextField, Paper, Typography, IconButton} from "@mui/material";
-import { RequestQueryStatus} from "../../type";
+import { RequestQueryStatus} from "../../Type/type";
 import {createWithoutTemplate} from "../../hooks/useSmc";
 import LinearBuffer from "../LinearBuffer";
 import QRcode from "../QRcode";
@@ -17,7 +17,7 @@ interface FormValues {
     certifiedPublicAdress: string;
     templateTitle: string;
     templateName: string;
-    tempDate: string;
+    tempDate: number;
     otherValues: string[];
 }
 
@@ -39,7 +39,7 @@ const FormWithoutTemplate = (props: props) => {
             certifiedPublicAdress: "",
             templateTitle: "",
             templateName: "",
-            tempDate: "",
+            tempDate: 0,
             otherValues: []
         });
 
@@ -55,7 +55,8 @@ const FormWithoutTemplate = (props: props) => {
         };
 
         const handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-            const tempDate = new Date(event.target.value).toDateString();
+            console.log(event.target.value)
+            const tempDate = Math.round(new Date(event.target.value).getTime() / 1000)
             setFormValues(prevValues => ({...prevValues, tempDate}));
         };
 
@@ -129,7 +130,7 @@ const FormWithoutTemplate = (props: props) => {
                                 sx={{mt: 1}}
                                 onChange={handleInputChange}
                             />
-                            <text>Certified Birth Date</text>
+                            <Typography>Certified Birth Date</Typography>
                             <TextField
                                 required={true}
                                 name="certifiedBirthDate"
@@ -182,7 +183,7 @@ const FormWithoutTemplate = (props: props) => {
                                 sx={{mt: 1}}
                                 onChange={handleInputChange}
                             />
-                            <text>Template Date</text>
+                            <Typography>Template Date</Typography>
                             <TextField
                                 required={true}
                                 name="tempDate"

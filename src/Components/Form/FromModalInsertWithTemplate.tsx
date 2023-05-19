@@ -33,7 +33,7 @@ const FormModalInsertWithTemlate= (props: Iprops) => {
         <div>
 
 
-            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
+            <Card  sx={{maxWidth: 345}} style={{borderRadius: 20}}>
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

@@ -1,15 +1,16 @@
 export type IDploma= {
     certAddrCertified?: string
     certAddrCertifier?: string |undefined
-    certCedrtifier?: ICertifier
+    certCertifier?: ICertifier
     certCertified?: ICertified
-    certTemplate?: ITemplate, dip_hash?: string
+    certTemplate?: ITemplate,
+
 }
 
 
 export type ICertifier ={
     cfierName?: string
-    cfierPhysicalAdress?: string
+    cfierPhysicalAddress?: string
 
 }
 
@@ -22,8 +23,8 @@ export type ICertified ={
 export interface ITemplate {
     tempTitle?: string
     tempName?: string
-    tempDate?: string
-    tempSpec?: string[]
+    tempDate?: number
+    tempSpecs?: string[]
 }
 
 export  enum RequestQueryStatus  {

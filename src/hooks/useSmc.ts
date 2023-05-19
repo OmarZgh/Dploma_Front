@@ -6,23 +6,24 @@ import {
     insertWithTemplate, updateTemplate,
 } from "../Services/Web3APi";
 import {useEffect, useState} from "react";
-import {IDploma, ITemplate} from "../type";
+import {IDploma, ITemplate} from "../Type/type";
 
 
 const fetchWeb3 = async (id?: string | undefined) => {
     return id! ? await getDploma(id).then((res: IDploma) => {
         const certif: IDploma = res
+        console.log(certif)
         return certif
     }) : undefined
 }
 
 export const insertTemplate = async (template: ITemplate) => {
-    return addTemplate(template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpec!)
+    return addTemplate(template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpecs!)
 
 }
 
 export const updateTemp = (template: ITemplate, hash: string) => {
-    return updateTemplate(hash, template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpec!)
+    return updateTemplate(hash, template.tempTitle!, template.tempName!, template.tempDate!, template.tempSpecs!)
 }
 export const createWithoutTemplate = (certifiedFirstName: string,
                                       certifiedLastName: string,
@@ -32,7 +33,7 @@ export const createWithoutTemplate = (certifiedFirstName: string,
                                       certifiedPublicAdress: string,
                                       templateTitle: string,
                                       templateName: string,
-                                      tempDate: string,
+                                      tempDate: number,
                                       otherValues: string[]) => {
     return insertWithoutTemplate(certifiedFirstName, certifiedLastName, certifiedBirthDate, certifierName, certifierPhysicalAdress, certifiedPublicAdress, templateTitle, templateName, tempDate, otherValues)
 

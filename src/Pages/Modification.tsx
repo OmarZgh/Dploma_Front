@@ -7,7 +7,7 @@ import * as React from "react";
 import {getDploma} from "../Services/Web3APi";
 import FormModalDelete from "../Components/Modal/FormModalDelete";
 import FormModalModification from "../Components/Modal/FormModalModification";
-import FormModalVisbility from "../Components/Form/FormModalVisbility";
+import FormVisbility from "../Components/Form/FormVisbility";
 
 
 
@@ -52,17 +52,17 @@ const Modification = () => {
                                          title={"Delete certification"} action={"Certify"}/></>
                 )
             case "CERTIFIED":
-                return <FormModalVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
-                                           hash={dplomaHash.id}
-                                           title={"Change Visibility"} action={"Vibility"}/>
+                return <FormVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
+                                      hash={dplomaHash.id}
+                                      title={"Change Visibility"} action={"Vibility"}/>
             case "CERTIFIED&CERTIFIER":
                 return (<> <FormModalModification open={openModification} setOpen={setOpenModification}
                                                   hash={dplomaHash.id}
                                                   title={"Modify Certification"}
                                                   description={""} action={"modify"}/>
-                        <FormModalVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
-                                            hash={dplomaHash.id}
-                                            title={"Change Visibility"} action={"Vibility"}/>
+                        <FormVisbility open={openVisibility} setOpen={setOpenVisibility} description={""}
+                                       hash={dplomaHash.id}
+                                       title={"Change Visibility"} action={"Vibility"}/>
                         <FormModalDelete open={openDelete} setOpen={setOpenDelete} description={""} hash={dplomaHash.id}
                                          title={"Delete certification"} action={"Delete"}/></>
                 )

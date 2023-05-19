@@ -7,7 +7,7 @@ import {Dispatch, SetStateAction, useState} from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "./FormLayout";
-import {RequestQueryStatus} from "../../type";
+import {RequestQueryStatus} from "../../Type/type";
 import LinearBuffer from "../LinearBuffer";
 import QRcode from "../QRcode";
 import {toggleVisibility} from "../../hooks/useSmc";
@@ -24,7 +24,7 @@ interface Iprops {
     hash: string,
 }
 
-const FormModalVisbility = (props: Iprops) => {
+const FormVisbility = (props: Iprops) => {
 
     const { open = false, setOpen, title, action, disabled} = props;
     const {NONE, LOADING, SUCCESS, ERROR} = RequestQueryStatus
@@ -70,7 +70,7 @@ const FormModalVisbility = (props: Iprops) => {
     }
     return (
         <div>
-            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
+            <Card sx={{maxWidth: 345}} style={{borderRadius: 20}}>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                         {title}
@@ -98,10 +98,10 @@ const FormModalVisbility = (props: Iprops) => {
 
                 <DialogActions>
                     <Button onClick={(e) => handleCertifiedVisibility(e)}>Confirm</Button>
-                    <Button onClick={handleClose}>Cancel</Button>
+                    <Button onClick={handleClose}>Close</Button>
                 </DialogActions>
             </Dialog>
         </div>)
 }
 
-export default FormModalVisbility
+export default FormVisbility

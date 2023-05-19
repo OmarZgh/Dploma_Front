@@ -8,7 +8,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import FormLayout from "../Form/FormLayout";
 import FormTemplate from "../Form/FormTemplate";
-import {ITemplate, RequestQueryStatus} from "../../type";
+import {ITemplate, RequestQueryStatus} from "../../Type/type";
 import LinearBuffer from "../LinearBuffer";
 import {updateTemp} from "../../hooks/useSmc";
 
@@ -44,7 +44,7 @@ const FormModalModification = (props: Iprops) => {
     const handleModify = () => {
         setRequestStatus(LOADING);
         updateTemp(template, props.hash).then((res) => {
-           // setResponse(res.events.evtUpdatedTemp.returnValues[0])
+           setResponse(res.events.evtModificationMsg.returnValues[0])
             setRequestStatus(SUCCESS);
         }).catch(() => {
             setRequestStatus(ERROR);
@@ -82,7 +82,7 @@ const FormModalModification = (props: Iprops) => {
         <div>
 
 
-            <Card component={Button} fullWidth={true} sx={{maxWidth: 345}} style={{borderRadius: 20}}>
+            <Card  sx={{maxWidth: 345}} style={{borderRadius: 20}}>
 
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

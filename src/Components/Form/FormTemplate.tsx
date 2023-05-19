@@ -1,15 +1,16 @@
 import {Button, Container, FormControl, IconButton, Paper, TextField, Typography} from "@mui/material";
 import {useEffect, useState} from "react";
-import {ITemplate, RequestQueryStatus} from "../../type";
+import {ITemplate, RequestQueryStatus} from "../../Type/type";
 import {insertTemplate} from "../../hooks/useSmc";
 import LinearBuffer from "../LinearBuffer";
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+
 
 interface FormValues {
     name: string;
     templateTitle: string;
     templateName: string;
-    temp_date: string;
+    temp_date: number;
     otherValues: string[];
 
 
@@ -30,13 +31,13 @@ const FormTemplate = (props: props) => {
         const [requestStatus, setRequestStatus] = useState<RequestQueryStatus>(NONE);
         const [response, setResponse] = useState<string>("")
         const [formValues, setFormValues] = useState<ITemplate>({
-            tempTitle: "", tempName: "", tempDate: "", tempSpec: [],
+            tempTitle: "", tempName: "", tempDate: 0, tempSpecs: [],
         });
 
 
         const handleInputChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
             const {name, value} = event.target;
-            if (name === "temp_speciality") {
+            if (name === "tempSpec") {
                 const values = value.split(",");
                 setFormValues(prevValues => ({...prevValues, [name]: values}));
             } else {
@@ -48,11 +49,9 @@ const FormTemplate = (props: props) => {
         };
 
         const handleDateChange = (event: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
-            const date = new Date(event.target.value).toDateString();
-            setFormValues(prevValues => ({...prevValues, date}));
-            if (setTemplate) {
+            const date = new Date(event.target.value).getDate();
+            setFormValues(prevValues => ({...prevValues,tempDate: date}));
 
-            }
         };
         useEffect(() => {
             if (setTemplate) {
@@ -98,7 +97,7 @@ const FormTemplate = (props: props) => {
                         <FormControl sx={{width: '100%'}}>
                             <TextField
                                 required={true}
-                                name="temp_title"
+                                name="tempTitle"
                                 placeholder="Template title"
                                 type="text"
                                 size="small"
@@ -108,7 +107,7 @@ const FormTemplate = (props: props) => {
                             />
                             <TextField
                                 required={true}
-                                name="temp_name"
+                                name="tempName"
                                 placeholder="Template name"
                                 type="text"
                                 size="small"
@@ -116,10 +115,10 @@ const FormTemplate = (props: props) => {
 
                                 onChange={event => handleInputChange(event)}
                             />
-                            <text>Template Date</text>
+                            <Typography>Template Date</Typography>
                             <TextField
                                 required={true}
-                                name="temp_date"
+                                name="tempDate"
                                 type="date"
                                 sx={{mt: 1}}
 
@@ -127,7 +126,7 @@ const FormTemplate = (props: props) => {
                             />
                             <TextField
                                 required={true}
-                                name="temp_speciality"
+                                name="tempSpec"
                                 placeholder="Specs separated by comma ','"
                                 type="text"
                                 size="small"

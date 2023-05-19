@@ -1,4 +1,4 @@
-import {IDploma} from "../type";
+import {IDploma} from "../Type/type";
 import Box from "@mui/material/Box";
 import {Divider, Grid, Paper, Typography} from "@mui/material";
 
@@ -8,7 +8,8 @@ interface DisplayDiplomaProps {
 
 const DisplayDiploma = (props: DisplayDiplomaProps) => {
     const {diplomas} = props
-
+    const t:number=(diplomas?.certTemplate?.tempDate!)
+    const timestamp = new Date(t*1000).toDateString()
     return (
         <Box sx={{mt: 2}}>
             {diplomas! ? (
@@ -22,10 +23,10 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
                                 :</strong> {diplomas?.certAddrCertifier}
                             </Typography>
                             <Typography noWrap={true} align={"left"} color={"dark"}><strong>Name
-                                :</strong> {diplomas?.certCedrtifier?.cfierName}
+                                :</strong> {diplomas?.certCertifier?.cfierName}
                             </Typography>
                             <Typography noWrap={true} align={"left"} color={"dark"}><strong>Physical address
-                                :</strong> {diplomas?.certCedrtifier?.cfierPhysicalAdress}</Typography>
+                                :</strong> {diplomas?.certCertifier?.cfierPhysicalAddress!}</Typography>
 
                         </Grid>
                         <Grid item={true} xs={12} md={6}>
@@ -53,7 +54,7 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
                             </Typography>
                             <Typography align={"left"}><strong>Name :</strong> {diplomas?.certTemplate?.tempName}
                             </Typography>
-                            <Typography align={"left"}><strong>Date :</strong> {diplomas?.certTemplate?.tempDate}
+                            <Typography align={"left"}><strong>Date :</strong> {timestamp}
                             </Typography>
                             <div>
                                 <Typography align={"left"}><strong>Speciality
@@ -61,7 +62,7 @@ const DisplayDiploma = (props: DisplayDiplomaProps) => {
 
                                 </Typography>
                                 <ul style={{position:"absolute"}}>
-                                    {diplomas?.certTemplate?.tempSpec?.map((speciality, index) => {
+                                    {diplomas?.certTemplate?.tempSpecs?.map((speciality, index) => {
                                             return <ol key={index}>{speciality}</ol>
                                         }
                                     )}</ul>
